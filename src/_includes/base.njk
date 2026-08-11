@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+    <meta name="description" content="{{ description or site.description }}">
+    <link rel="stylesheet" href="/css/style.css">
+    {%- if site.url %}
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    {%- endif %}
+    <meta property="og:type" content="{{ ogType or 'website' }}">
+    <meta property="og:title" content="{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}">
+    <meta property="og:description" content="{{ description or site.description }}">
+    <meta property="og:site_name" content="{{ site.name }}">
+    {%- if site.url %}
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    {%- endif %}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <p class="site-header__name"><a href="/">{{ site.name }}</a></p>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          {%- for item in site.nav %}
+          <li>
+            <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+          </li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <p>{{ site.name }}</p>
+      {%- if site.email %}
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      {%- endif %}
+      {%- if site.elsewhere.length %}
+      <ul class="site-footer__links">
+        {%- for link in site.elsewhere %}
+        <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </footer>
+  </body>
+</html>

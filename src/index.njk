@@ -1,0 +1,17 @@
+---
+layout: base.njk
+eleventyExcludeFromCollections: true
+---
+<section class="intro">
+  <h1>{{ site.tagline }}</h1>
+</section>
+
+<section class="home-work">
+  <h2 class="section-heading">Selected work</h2>
+  <ul class="cards">
+    {%- for project in collections.projects | selectFeatured(4) %}
+    {% include "partials/project-card.njk" %}
+    {%- endfor %}
+  </ul>
+  <p class="more-link"><a href="/work/">All work</a></p>
+</section>

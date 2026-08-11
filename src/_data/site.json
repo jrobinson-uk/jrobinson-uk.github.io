@@ -1,0 +1,12 @@
+{
+  "name": "James Robinson",
+  "tagline": "I'm a maker and educator who turns ambiguous ideas about learning into things children can put their hands on — physical computing, digital fabrication, and the pedagogy that decides whether any of it works.",
+  "description": "Maker and educator working at the intersection of physical computing, digital fabrication and learning design.",
+  "url": "",
+  "email": "",
+  "nav": [
+    { "label": "Work", "url": "/work/" },
+    { "label": "About", "url": "/about/" }
+  ],
+  "elsewhere": []
+}
