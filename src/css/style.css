@@ -194,11 +194,23 @@ main {
   list-style: none;
 }
 
+.card {
+  display: flex;
+}
+
+/* Cards without a photograph push their text to the bottom, so it still lines up
+   with the text of a neighbouring card that has one. */
 .card__link {
-  display: grid;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   gap: 0.75rem;
   color: inherit;
   text-decoration: none;
+}
+
+.card__text {
+  margin-top: auto;
 }
 
 .card__title {

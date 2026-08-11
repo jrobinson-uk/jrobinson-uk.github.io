@@ -25,7 +25,10 @@ ogType: article
     {%- endif %}
   </header>
 
+  {#- No hero block at all unless the front matter names an image or a video.
+      Entries with no physical artefact shouldn't advertise a missing photograph. -#}
   {%- set h = hero or {} %}
+  {%- if h.src or h.video %}
   <div class="hero">
     {%- if h.video %}
     {% video h.video, h.poster, h.alt or title %}
@@ -33,6 +36,7 @@ ogType: article
     {% hero h, title %}
     {%- endif %}
   </div>
+  {%- endif %}
 
   {%- for section in sections | filledSections %}
   <section class="project__section">

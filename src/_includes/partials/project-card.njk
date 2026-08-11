@@ -1,9 +1,11 @@
 <li class="card">
   {%- set cardHero = project.data.hero or {} %}
   <a class="card__link" href="{{ project.url }}">
+    {%- if cardHero.src %}
     <div class="card__media">
       {% image cardHero.src, cardHero.alt or project.data.title, { sizes: "(min-width: 48rem) 22rem, 100vw" } %}
     </div>
+    {%- endif %}
     <div class="card__text">
       <span class="card__title">{{ project.data.title }}</span>
       {%- if project.data.summary %}

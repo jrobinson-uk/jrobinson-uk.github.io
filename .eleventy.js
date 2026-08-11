@@ -91,6 +91,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/assets/img");
   eleventyConfig.addPassthroughCopy("src/assets/video");
+  eleventyConfig.addPassthroughCopy({ "src/assets/favicon.svg": "favicon.svg" });
   eleventyConfig.addPassthroughCopy(".nojekyll");
 
   // CNAME only exists once a custom domain is chosen; don't fail the build before then.

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
     <meta name="description" content="{{ description or site.description }}">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/css/style.css">
     {%- if site.url %}
     <link rel="canonical" href="{{ site.url }}{{ page.url }}">
@@ -15,6 +16,11 @@
     <meta property="og:site_name" content="{{ site.name }}">
     {%- if site.url %}
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    {%- endif %}
+    {#- Needs an absolute URL, so it only appears once site.url is set. -#}
+    {%- if site.url and hero.src %}
+    <meta property="og:image" content="{{ site.url }}/assets/img/{{ hero.src }}">
+    <meta property="og:image:alt" content="{{ hero.alt }}">
     {%- endif %}
   </head>
   <body>
