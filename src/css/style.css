@@ -50,7 +50,7 @@ p, ul, ol, dl { margin: 0 0 1.1em; }
 }
 
 /* Small uppercase labels: section headings and the placeholder kicker. */
-.section-heading, .project__section h2, .placeholder__kicker {
+.section-heading, .project__section h2, .project__body h2, .placeholder__kicker {
   color: var(--ink-soft); font: var(--label);
   letter-spacing: 0.08em; text-transform: uppercase;
 }
@@ -133,6 +133,11 @@ p, ul, ol, dl { margin: 0 0 1.1em; }
 
 .hero { margin: var(--step) 0 calc(var(--step) * 1.75); }
 .project__section { margin-bottom: calc(var(--step) * 1.75); }
+
+/* Body sections are `##` headings rather than wrapped elements, so the rhythm
+   between them comes from the heading's top margin. */
+.project__body h2 { margin-top: calc(var(--step) * 1.75); }
+.project__body > :first-child { margin-top: 0; }
 
 .link-list, .back-link { padding: 0; list-style: none; }
 .back-link { margin-top: calc(var(--step) * 2); }

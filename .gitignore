@@ -7,3 +7,8 @@ _site/
 portfolio-site-plan.md
 claude-code-build-brief.md
 NOTES.md
+
+# Obsidian: keep the vault settings that make authoring work, ignore the rest
+# (workspace layout, plugin state, caches — all machine-specific noise).
+src/.obsidian/*
+!src/.obsidian/app.json

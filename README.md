@@ -52,31 +52,30 @@ No template changes are needed for any of this.
 | `hero.alt` | Required whenever `hero.src` is set. |
 | `hero.video` | Filename in `src/assets/video/`. Used instead of the hero image. |
 | `hero.poster` | Still image for the video, from `src/assets/img/`. |
-| `sections` | The six content fields. See below. |
 | `links` | List of `{label, url}`. Entries with no `url` are skipped. |
-
-Anything after the front matter is optional long-form body copy, rendered below
-the sections.
 
 ### The sections
 
-These are the fields from the site plan's project template, and they render in
-this order with these headings:
+The body of the file is where the writing goes, as `##` headings. These are the
+fields from the site plan's project template:
 
-| Key | Heading |
-| --- | --- |
-| `question` | The question |
-| `made` | What I made |
-| `scope` | What I did myself |
-| `tested` | How it was tested |
-| `learned` | What I learned |
-| `outcome` | Where it went |
+```markdown
+## The question
+## What I made
+## What I did myself
+## How it was tested
+## What I learned
+## Where it went
+```
 
-Write them as YAML block strings (`question: |`) and use Markdown inside. Leave
-out any you can't fill — an absent section produces no heading at all.
+Use the ones you can fill and leave out the ones you can't — a section you don't
+write simply doesn't appear. Order is up to you, though the list above reads best.
+You can put images, figure rows and extra prose anywhere between them.
 
-To change the set or the order, edit the `SECTIONS` array at the top of
-`.eleventy.js`. Nothing else needs touching.
+If you write a heading that isn't on that list, the build prints a warning naming
+the file. It doesn't fail, so you're free to add a section the template never
+anticipated — but it does catch "What I learnt" and similar typos. The canonical
+list is `SECTION_HEADINGS` at the top of `.eleventy.js`.
 
 ## Images
 
@@ -84,12 +83,19 @@ Reference images by filename and the build does the rest: AVIF, WebP and JPEG at
 four widths, with `width` and `height` set so nothing shifts as the page loads.
 The hero loads eagerly, everything else lazily.
 
-**If the file isn't there yet, you get a placeholder block showing the alt text.**
-That's intentional — you can write a whole project page before taking the
-photograph, and the page reads as unfinished rather than broken.
+There are two ways to put an image on a page, and the difference matters:
 
-Alt text is enforced at build time. Referencing an image without alt text fails
-the build and names the file.
+- **Hero and figure rows** are declared in front matter and rendered by a shortcode.
+  If the file isn't there yet you get a **placeholder block showing the alt text** —
+  intentional, so you can write a whole project page before taking the photograph and
+  have it read as unfinished rather than broken.
+- **Images in the body** are ordinary Markdown, `![Alt text](assets/img/thing.jpg)`,
+  which is what Obsidian writes when you paste one in. These still get the full
+  responsive treatment, but there's no placeholder — the file needs to exist.
+
+Alt text is enforced at build time either way: any image that reaches the output with
+missing or empty alt text **fails the build** and names the source file. That check
+runs on the rendered HTML, so it catches Markdown images as well as shortcode ones.
 
 ### Iteration line-ups
 
@@ -113,6 +119,37 @@ iterations:
 Short, silent, self-hosted MP4 in `src/assets/video/`, under about 3 MB. Videos
 render with controls and never autoplay, which is what keeps them compatible with
 `prefers-reduced-motion` without any JavaScript.
+
+## Writing in Obsidian
+
+**Open `src/` as the vault** — not the repo root, which would make Obsidian index
+`node_modules`. The vault settings are committed in `src/.obsidian/app.json`, so it
+behaves correctly on a fresh clone:
+
+- Pasted images land in `assets/img/`, which is where the build looks for them.
+- Links are written as Markdown with vault-absolute paths, so alt text is expressible.
+- `_includes/` and `_data/` are hidden from search and the file tree.
+
+Everything else under `src/.obsidian/` is gitignored — workspace layout and plugin
+state are machine-specific noise.
+
+The build translates Obsidian's paths into the site's URLs, so all of these work:
+
+| You write | You get |
+| --- | --- |
+| `![Alt](assets/img/thing.jpg)` | the responsive image pipeline |
+| `[[lego-face]]` | a link to `/work/lego-face/` |
+| `[[lego-face\|the LEGO face]]` | the same link, with your label |
+| `[text](projects/lego-face.md)` | a link to `/work/lego-face/` |
+| `[text](about.md)` | a link to `/about/` |
+
+One caveat: that translation is a text substitution over the whole file, so `[[...]]`
+inside a fenced code block would also be rewritten. No project file has code blocks
+today; if one ever needs them, that's the thing to watch.
+
+Project pages are plain Markdown with `##` headings, so Live Preview shows you
+essentially the finished page. The only non-Markdown thing you'll see is the
+`{% figureRow %}` line for iteration line-ups.
 
 ## Drafts
 
@@ -140,7 +177,8 @@ Two one-off setup steps, both in the repo's **Settings → Pages**:
 ## Layout of the repo
 
 ```
-src/
+src/                         ← open this as the Obsidian vault
+├── .obsidian/app.json       vault settings (attachments, link format)
 ├── _data/site.json          name, tagline, nav, contact
 ├── _includes/
 │   ├── base.njk             head, header, footer
@@ -153,9 +191,13 @@ src/
 ├── about.md
 ├── assets/{img,video}/
 └── css/style.css
-.eleventy.js                 config, image pipeline, section order, filters
+.eleventy.js                 config, image pipeline, path rewriting, validation
 ```
 
-The image, hero, `figureRow` and video shortcodes live in `.eleventy.js` rather
-than as Nunjucks partials, because they check the filesystem to decide whether to
-emit a real image or a placeholder.
+Two things in `.eleventy.js` are worth knowing about:
+
+- The image, hero, `figureRow` and video shortcodes live there rather than as
+  Nunjucks partials, because they check the filesystem to decide whether to emit a
+  real image or a placeholder.
+- The `obsidian-paths` preprocessor and the `validate-output` transform are what
+  translate Obsidian's paths and enforce the alt-text and heading rules.

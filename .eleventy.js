@@ -10,15 +10,23 @@ const isProduction = process.env.ELEVENTY_ENV === "production";
 const md = new MarkdownIt({ html: true, linkify: true, typographer: true });
 const esc = (value) => md.utils.escapeHtml(String(value));
 
-// The seven-field project template from portfolio-site-plan.md, in render order.
-// Adding or renaming a field is a one-line change here.
-const SECTIONS = [
-  { key: "question", heading: "The question" },
-  { key: "made", heading: "What I made" },
-  { key: "scope", heading: "What I did myself" },
-  { key: "tested", heading: "How it was tested" },
-  { key: "learned", heading: "What I learned" },
-  { key: "outcome", heading: "Where it went" }
+/**
+ * The project template from the site plan. These are now `##` headings written in
+ * the body of each project's Markdown, so they can be authored in Obsidian's
+ * editor rather than as nested YAML.
+ *
+ * Nothing enforces that a project uses all of them, or uses them in this order —
+ * absent sections simply don't render. The list exists so the build can warn about
+ * a heading that looks like a typo of one of these.
+ */
+const SECTION_HEADINGS = [
+  "The question",
+  "What I made",
+  "What I did myself",
+  "How it was tested",
+  "What I learned",
+  "Where it went",
+  "Links"
 ];
 
 const DEFAULT_SIZES = "(min-width: 48rem) 46rem, 100vw";
@@ -85,7 +93,77 @@ export default function (eleventyConfig) {
     extensions: "html",
     formats: ["avif", "webp", "jpeg"],
     widths: [480, 800, 1200, 1600],
-    defaultAttributes: { sizes: DEFAULT_SIZES }
+    defaultAttributes: { sizes: DEFAULT_SIZES },
+    // A body image whose file isn't there yet shouldn't stop the site building.
+    // Alt text is still enforced, by the transform further down.
+    failOnError: false
+  });
+
+  /**
+   * Rewrites the link and image paths Obsidian writes into paths this site serves.
+   *
+   * Obsidian, with "Use [[Wikilinks]]" off and "New link format" set to absolute,
+   * writes vault-root-relative paths: `assets/img/foo.jpg`, `projects/bar.md`.
+   * Wikilinks are handled too, in case you type them by hand.
+   *
+   * Caveat: this is a text substitution over the whole file, so `[[...]]` inside a
+   * fenced code block would also be rewritten. No project file has code blocks; if
+   * one ever does, that's the thing to watch.
+   */
+  eleventyConfig.addPreprocessor("obsidian-paths", "md", (data, content) =>
+    content
+      // ![Alt](assets/img/x.jpg) and ![Alt](/assets/img/x.jpg) → served path
+      .replace(/(!\[[^\]]*\]\()\/?assets\/(img|video)\//g, "$1/assets/$2/")
+      // [Label](projects/lego-face.md) → [Label](/work/lego-face/)
+      .replace(/(\]\()\/?projects\/([^)/]+)\.md(\))/g, "$1/work/$2/$3")
+      // [Label](about.md) → [Label](/about/)
+      .replace(/(\]\()\/?(about|writing)\.md(\))/g, "$1/$2/$3")
+      // [[lego-face]] and [[lego-face|The LEGO face]] → a link to the project
+      .replace(
+        /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
+        (_m, target, label) => `[${label || target}](/work/${target.replace(/\.md$/, "")}/)`
+      )
+  );
+
+  /**
+   * Two build-time guarantees, checked on the rendered HTML so they cover both the
+   * `image` shortcode and plain Markdown images written in Obsidian:
+   *
+   *  1. Every image has non-empty alt text. This throws — it's the accessibility
+   *     commitment the site is built on, and a silent warning would get ignored.
+   *  2. Project `##` headings are warned about if they aren't from the known set,
+   *     which catches "What I learnt" and similar typos. This only warns, so you're
+   *     free to add a section the template never anticipated.
+   */
+  eleventyConfig.addTransform("validate-output", function (content) {
+    const outputPath = this.page?.outputPath;
+    if (!outputPath || !outputPath.endsWith(".html")) return content;
+
+    for (const tag of content.match(/<img\b[^>]*>/g) || []) {
+      const alt = tag.match(/\salt\s*=\s*"([^"]*)"/);
+      if (!alt || !hasText(alt[1])) {
+        const src = (tag.match(/\ssrc\s*=\s*"([^"]*)"/) || [])[1] || "unknown source";
+        throw new Error(
+          `Image with no alt text in ${this.page.inputPath} (src: ${src}).\n` +
+            `Every image needs meaningful alt text; decorative images aren't expected here.`
+        );
+      }
+    }
+
+    const isProjectPage = /\/work\/[^/]+\/index\.html$/.test(outputPath);
+    if (isProjectPage) {
+      for (const tag of content.match(/<h2\b[^>]*>[\s\S]*?<\/h2>/g) || []) {
+        const text = tag.replace(/<[^>]+>/g, "").trim();
+        if (text && !SECTION_HEADINGS.includes(text)) {
+          console.warn(
+            `[project headings] "${text}" in ${this.page.inputPath} isn't one of: ` +
+              SECTION_HEADINGS.join(", ")
+          );
+        }
+      }
+    }
+
+    return content;
   });
 
   eleventyConfig.addPassthroughCopy("src/css");
@@ -108,15 +186,6 @@ export default function (eleventyConfig) {
   // Used to gate og:image, so social cards never advertise a photo that isn't there.
   eleventyConfig.addFilter("imageExists", (src) =>
     hasText(src) && fs.existsSync(path.join(IMG_SOURCE_DIR, src))
-  );
-
-  // Only the sections that actually have copy, in template order. Anything blank
-  // or absent is dropped, so a half-written project never renders an empty heading.
-  eleventyConfig.addFilter("filledSections", (sections) =>
-    SECTIONS.filter((section) => hasText(sections?.[section.key])).map((section) => ({
-      ...section,
-      body: md.render(sections[section.key])
-    }))
   );
 
   eleventyConfig.addFilter("withUrl", (links) => (links || []).filter((link) => hasText(link?.url)));

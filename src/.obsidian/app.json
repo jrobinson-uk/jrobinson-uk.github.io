@@ -1,0 +1,8 @@
+{
+  "attachmentFolderPath": "assets/img",
+  "newLinkFormat": "absolute",
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": true,
+  "showFrontmatter": true,
+  "userIgnoreFilters": ["_includes/", "_data/"]
+}

@@ -38,13 +38,8 @@ ogType: article
   </div>
   {%- endif %}
 
-  {%- for section in sections | filledSections %}
-  <section class="project__section">
-    <h2>{{ section.heading }}</h2>
-    {{ section.body | safe }}
-  </section>
-  {%- endfor %}
-
+  {#- The body carries the project template as `##` headings, so it can be written
+      in Obsidian. An absent section is simply a heading you didn't write. -#}
   {%- if content | hasText %}
   <div class="project__body">
     {{ content | safe }}
