@@ -12,7 +12,7 @@ tools:
   - LED matrix
   - LDraw
 hero:
-  src: lego-face-hero.jpg
+  src: robot_face.gif
   alt: An articulated face built from LEGO, with LED matrix eyes and a Raspberry Pi camera mounted at its centre.
 links: []
 ---
