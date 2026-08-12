@@ -1,1 +1,16 @@
-{}
+{
+  "attachmentFolderPath": "src/assets/img",
+  "newLinkFormat": "absolute",
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": true,
+  "showFrontmatter": true,
+  "userIgnoreFilters": [
+    "node_modules/",
+    "_site/",
+    ".cache/",
+    ".github/",
+    "src/_includes/",
+    "src/_data/",
+    "src/css/"
+  ]
+}

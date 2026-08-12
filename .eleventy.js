@@ -35,6 +35,35 @@ function hasText(value) {
   return typeof value === "string" && value.trim().length > 0;
 }
 
+/**
+ * Counts GIF Graphic Control Extension blocks. More than one means the file is
+ * animated. This is a byte-level heuristic rather than a full GIF parse, which is
+ * enough to tell an animation from a still and needs no extra dependency.
+ */
+const animationChecked = new Map();
+function warnIfAnimated(src, sourcePath) {
+  if (!/\.gif$/i.test(src) || animationChecked.has(src)) return;
+  animationChecked.set(src, true);
+
+  const bytes = fs.readFileSync(sourcePath);
+  let frames = 0;
+  for (let i = 0; i < bytes.length - 2; i++) {
+    if (bytes[i] === 0x21 && bytes[i + 1] === 0xf9 && bytes[i + 2] === 0x04) frames++;
+  }
+  if (frames <= 1) return;
+
+  const mb = (bytes.length / 1024 / 1024).toFixed(1);
+  console.warn(
+    `\n[animated image] ${src} is an animated GIF (${frames} frames, ${mb} MB).\n` +
+      `  The image pipeline will publish its FIRST FRAME ONLY — the animation is lost.\n` +
+      `  For motion, convert it to MP4 and use hero.video instead of hero.src:\n` +
+      `    ffmpeg -i src/assets/img/${src} -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" \\\n` +
+      `      -c:v libx264 -pix_fmt yuv420p -movflags +faststart -an \\\n` +
+      `      src/assets/video/${src.replace(/\.gif$/i, ".mp4")}\n` +
+      `  A video also gets you reduced-motion support, which an animated GIF cannot.\n`
+  );
+}
+
 function placeholderMarkup(alt, { wide = false } = {}) {
   const label = hasText(alt) ? alt : "Photograph still to be taken";
   return (
@@ -68,9 +97,11 @@ function imageMarkup(src, alt, options = {}) {
   }
 
   // Expected state while assets are still being gathered — not a build failure.
-  if (!fs.existsSync(path.join(IMG_SOURCE_DIR, src))) {
+  const sourcePath = path.join(IMG_SOURCE_DIR, src);
+  if (!fs.existsSync(sourcePath)) {
     return placeholderMarkup(alt, { wide });
   }
+  warnIfAnimated(src, sourcePath);
 
   const attrs = [
     `src="/assets/img/${esc(src)}"`,
@@ -102,26 +133,38 @@ export default function (eleventyConfig) {
   /**
    * Rewrites the link and image paths Obsidian writes into paths this site serves.
    *
-   * Obsidian, with "Use [[Wikilinks]]" off and "New link format" set to absolute,
-   * writes vault-root-relative paths: `assets/img/foo.jpg`, `projects/bar.md`.
-   * Wikilinks are handled too, in case you type them by hand.
+   * The vault is the repo root, so Obsidian writes paths relative to it —
+   * `src/assets/img/foo.jpg`, `src/projects/bar.md`. The `src/` prefix is optional
+   * in these patterns so the same rules also work if you ever open `src/` as the
+   * vault instead. Wikilinks are handled too, in case you type them by hand.
    *
    * Caveat: this is a text substitution over the whole file, so `[[...]]` inside a
    * fenced code block would also be rewritten. No project file has code blocks; if
    * one ever does, that's the thing to watch.
    */
+  const FROM_VAULT = String.raw`(?:\.?\/)?(?:src\/)?`;
   eleventyConfig.addPreprocessor("obsidian-paths", "md", (data, content) =>
     content
-      // ![Alt](assets/img/x.jpg) and ![Alt](/assets/img/x.jpg) → served path
-      .replace(/(!\[[^\]]*\]\()\/?assets\/(img|video)\//g, "$1/assets/$2/")
-      // [Label](projects/lego-face.md) → [Label](/work/lego-face/)
-      .replace(/(\]\()\/?projects\/([^)/]+)\.md(\))/g, "$1/work/$2/$3")
-      // [Label](about.md) → [Label](/about/)
-      .replace(/(\]\()\/?(about|writing)\.md(\))/g, "$1/$2/$3")
+      // ![Alt](src/assets/img/x.jpg) → ![Alt](/assets/img/x.jpg)
+      .replace(
+        new RegExp(String.raw`(!\[[^\]]*\]\()${FROM_VAULT}assets/(img|video)/`, "g"),
+        "$1/assets/$2/"
+      )
+      // [Label](src/projects/lego-face.md) → [Label](/work/lego-face/)
+      .replace(
+        new RegExp(String.raw`(\]\()${FROM_VAULT}projects/([^)/]+)\.md(\))`, "g"),
+        "$1/work/$2/$3"
+      )
+      // [Label](src/about.md) → [Label](/about/)
+      .replace(
+        new RegExp(String.raw`(\]\()${FROM_VAULT}(about|writing)\.md(\))`, "g"),
+        "$1/$2/$3"
+      )
       // [[lego-face]] and [[lego-face|The LEGO face]] → a link to the project
       .replace(
         /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
-        (_m, target, label) => `[${label || target}](/work/${target.replace(/\.md$/, "")}/)`
+        (_m, target, label) =>
+          `[${label || target}](/work/${target.replace(/^.*\//, "").replace(/\.md$/, "")}/)`
       )
   );
 

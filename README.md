@@ -89,9 +89,15 @@ There are two ways to put an image on a page, and the difference matters:
   If the file isn't there yet you get a **placeholder block showing the alt text** —
   intentional, so you can write a whole project page before taking the photograph and
   have it read as unfinished rather than broken.
-- **Images in the body** are ordinary Markdown, `![Alt text](assets/img/thing.jpg)`,
-  which is what Obsidian writes when you paste one in. These still get the full
-  responsive treatment, but there's no placeholder — the file needs to exist.
+- **Images in the body** are ordinary Markdown,
+  `![Alt text](src/assets/img/thing.jpg)`, which is what Obsidian writes when you
+  paste one in. These still get the full responsive treatment, but there's no
+  placeholder — the file needs to exist.
+
+**Animated GIFs don't work as heroes.** The pipeline publishes a single still frame,
+so the animation is lost. The build warns you when it spots one and prints the
+`ffmpeg` command to convert it. Use `hero.video` with an MP4 instead — smaller, and
+it can respect `prefers-reduced-motion`, which an animated GIF cannot.
 
 Alt text is enforced at build time either way: any image that reaches the output with
 missing or empty alt text **fails the build** and names the source file. That check
@@ -122,26 +128,53 @@ render with controls and never autoplay, which is what keeps them compatible wit
 
 ## Writing in Obsidian
 
-**Open `src/` as the vault** — not the repo root, which would make Obsidian index
-`node_modules`. The vault settings are committed in `src/.obsidian/app.json`, so it
-behaves correctly on a fresh clone:
+**The repo root is the vault.** Open `/Users/…/Portfolio` in Obsidian, not `src/`.
+Settings are committed in `.obsidian/app.json`, so it behaves the same on a fresh
+clone:
 
-- Pasted images land in `assets/img/`, which is where the build looks for them.
+- Pasted images land in `src/assets/img/`, which is where the build looks for them.
 - Links are written as Markdown with vault-absolute paths, so alt text is expressible.
-- `_includes/` and `_data/` are hidden from search and the file tree.
+- `node_modules/`, `_site/`, `.github/`, `src/_includes/`, `src/_data/` and
+  `src/css/` are excluded from search and the quick switcher.
 
-Everything else under `src/.obsidian/` is gitignored — workspace layout and plugin
-state are machine-specific noise.
+Machine-specific state — window layout, theme, plugin bundles — is gitignored.
+
+### Committing and pushing from Obsidian
+
+The **Git** community plugin (obsidian-git) is set up. The plugin bundle itself
+isn't committed, so on a new machine install it from Settings → Community plugins;
+the committed `data.json` then configures it.
+
+Useful commands from the palette (`Cmd-P`):
+
+| Command | What it does |
+| --- | --- |
+| `Git: Commit all changes` | Stages everything and commits with the default message |
+| `Git: Commit all changes with specific message` | Prompts you for the message |
+| `Git: Push` | Pushes to `origin/main`, which triggers the deploy |
+| `Git: Open source control view` | Sidebar with staged/unstaged files and diffs |
+
+Nothing is automatic: no auto-commit, no auto-push. That's deliberate, because
+every push to `main` publishes the site — you don't want half-written project copy
+deploying itself. It does pull on startup.
+
+The vault is the repo root, so the source control view shows changes to
+`.eleventy.js`, `README.md` and the workflow file as well as to your content. The
+planning docs, `NOTES.md`, `node_modules/` and `_site/` are all gitignored, so
+"Commit all changes" can't publish them by accident.
 
 The build translates Obsidian's paths into the site's URLs, so all of these work:
 
 | You write | You get |
 | --- | --- |
-| `![Alt](assets/img/thing.jpg)` | the responsive image pipeline |
+| `![Alt](src/assets/img/thing.jpg)` | the responsive image pipeline |
 | `[[lego-face]]` | a link to `/work/lego-face/` |
 | `[[lego-face\|the LEGO face]]` | the same link, with your label |
-| `[text](projects/lego-face.md)` | a link to `/work/lego-face/` |
-| `[text](about.md)` | a link to `/about/` |
+| `[text](src/projects/lego-face.md)` | a link to `/work/lego-face/` |
+| `[text](src/about.md)` | a link to `/about/` |
+
+The `src/` prefix is optional in all of those, so the same links keep working if you
+ever open `src/` as the vault instead.
 
 One caveat: that translation is a text substitution over the whole file, so `[[...]]`
 inside a fenced code block would also be rewritten. No project file has code blocks
@@ -177,21 +210,24 @@ Two one-off setup steps, both in the repo's **Settings → Pages**:
 ## Layout of the repo
 
 ```
-src/                         ← open this as the Obsidian vault
-├── .obsidian/app.json       vault settings (attachments, link format)
-├── _data/site.json          name, tagline, nav, contact
-├── _includes/
-│   ├── base.njk             head, header, footer
-│   ├── project.njk          single project page
-│   └── partials/            project-card
-├── projects/                one .md per project
-│   └── projects.11tydata.js shared front matter: layout, tags, permalink, drafts
-├── index.njk                home
-├── work.njk                 /work
-├── about.md
-├── assets/{img,video}/
-└── css/style.css
-.eleventy.js                 config, image pipeline, path rewriting, validation
+.                             ← open this directory as the Obsidian vault
+├── .obsidian/                vault settings; app.json and the Git plugin's
+│                             data.json are committed, the rest is ignored
+├── .eleventy.js              config, image pipeline, path rewriting, validation
+├── .github/workflows/        build and deploy to Pages
+└── src/
+    ├── _data/site.json       name, tagline, nav, contact
+    ├── _includes/
+    │   ├── base.njk          head, header, footer
+    │   ├── project.njk       single project page
+    │   └── partials/         project-card
+    ├── projects/             one .md per project
+    │   └── projects.11tydata.js   layout, tags, permalink, drafts
+    ├── index.njk             home
+    ├── work.njk              /work
+    ├── about.md
+    ├── assets/{img,video}/
+    └── css/style.css
 ```
 
 Two things in `.eleventy.js` are worth knowing about:
