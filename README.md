@@ -4,9 +4,12 @@ A static site built with [Eleventy](https://www.11ty.dev/). Content is Markdown,
 templates are Nunjucks, styling is one hand-written stylesheet. No client-side
 JavaScript, no framework, no CMS.
 
-Content and editorial decisions live in `portfolio-site-plan.md`. How it's built
-lives in `claude-code-build-brief.md`. Open questions and missing assets live in
-`NOTES.md`.
+Three working documents sit alongside this repo but are deliberately not committed
+to it, since it's public: `portfolio-site-plan.md` (content and editorial
+decisions), `claude-code-build-brief.md` (how it's built) and `NOTES.md` (open
+questions and assets still needed). They're listed in `.gitignore`. If you've
+cloned this fresh onto another machine, they won't come with it — copy them across
+manually.
 
 ## Running it
 

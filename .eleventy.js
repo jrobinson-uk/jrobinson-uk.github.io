@@ -55,7 +55,7 @@ function imageMarkup(src, alt, options = {}) {
   if (!hasText(alt)) {
     throw new Error(
       `Missing alt text for image "${src}"${context ? ` in "${context}"` : ""}. ` +
-        `Every image needs meaningful alt text — see claude-code-build-brief.md.`
+        `Every image needs meaningful alt text; decorative images aren't expected here.`
     );
   }
 
@@ -104,6 +104,11 @@ export default function (eleventyConfig) {
     hasText(value) ? md.renderInline(value) : ""
   );
   eleventyConfig.addFilter("hasText", hasText);
+
+  // Used to gate og:image, so social cards never advertise a photo that isn't there.
+  eleventyConfig.addFilter("imageExists", (src) =>
+    hasText(src) && fs.existsSync(path.join(IMG_SOURCE_DIR, src))
+  );
 
   // Only the sections that actually have copy, in template order. Anything blank
   // or absent is dropped, so a half-written project never renders an empty heading.

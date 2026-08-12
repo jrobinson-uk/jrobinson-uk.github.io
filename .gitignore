@@ -2,3 +2,8 @@ node_modules/
 _site/
 .cache/
 .DS_Store
+
+# Planning documents and working notes: kept locally, deliberately not published.
+portfolio-site-plan.md
+claude-code-build-brief.md
+NOTES.md

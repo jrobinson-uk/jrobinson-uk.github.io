@@ -17,8 +17,8 @@
     {%- if site.url %}
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     {%- endif %}
-    {#- Needs an absolute URL, so it only appears once site.url is set. -#}
-    {%- if site.url and hero.src %}
+    {#- Needs an absolute URL, and a file that actually exists. -#}
+    {%- if site.url and hero.src | imageExists %}
     <meta property="og:image" content="{{ site.url }}/assets/img/{{ hero.src }}">
     <meta property="og:image:alt" content="{{ hero.alt }}">
     {%- endif %}
