@@ -1,0 +1,170 @@
+@use "./base.scss";
+
+/**
+ * Portfolio overrides.
+ *
+ * Quartz's default layout is built for a note garden: wide grid, side rails, page
+ * furniture. This narrows it to a single readable column and removes the furniture,
+ * so the artefact photographs are the only visual interest on the page.
+ */
+
+:root {
+  --measure: 34rem; // body text, roughly 65–72 characters
+  --wide: 58rem; // page frame; images may fill it
+}
+
+// ---- frame ----
+
+.page {
+  max-width: var(--wide);
+  margin-inline: auto;
+  padding: 0 1.25rem;
+
+  & > #quartz-body {
+    display: block;
+    width: 100%;
+
+    // The side rails are empty by configuration; make sure they take no space.
+    .sidebar,
+    .left,
+    .right {
+      display: none;
+    }
+
+    .center {
+      margin: 0;
+      max-width: none;
+      border: none;
+    }
+  }
+}
+
+body {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+// ---- typography ----
+
+article {
+  max-width: var(--measure);
+
+  & h1 {
+    font-size: 1.75rem;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  // Section headings within a project are small uppercase labels, not big titles.
+  & h2 {
+    margin-top: 2.625rem;
+    color: var(--darkgray);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  // Consecutive images in one paragraph become an iteration line-up: two to four
+  // versions of the same object side by side, which the site plan calls the most
+  // persuasive image on the whole site.
+  & p:has(img + img) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    max-width: var(--wide);
+
+    & img {
+      width: 100%;
+      margin: 0;
+    }
+  }
+}
+
+.article-title {
+  margin-bottom: 0.6em;
+}
+
+// Images may break wider than the text column.
+article img,
+article picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// ---- links ----
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+
+  &.internal {
+    // Quartz pills internal links by default; plain underlines suit this better.
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+// ---- landing page ----
+
+body[data-slug="index"] {
+  // The landing page's h1 is the site name, which the header already shows.
+  & .article-title {
+    display: none;
+  }
+
+  // The tagline carries the page; give it room and don't shout it.
+  & article {
+    max-width: 44rem;
+
+    & > p:first-of-type {
+      font-size: clamp(1.5rem, 4.2vw, 2.125rem);
+      font-weight: 500;
+      line-height: 1.2;
+      text-wrap: balance;
+    }
+  }
+}
+
+// ---- footer ----
+
+footer {
+  margin-top: 4.5rem;
+  padding: 1.5rem 0 2.5rem;
+  border-top: 1px solid var(--lightgray);
+  color: var(--gray);
+  font-size: 0.9375rem;
+  text-align: left;
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+// ---- wider screens ----
+
+@media (min-width: 48rem) {
+  .page {
+    padding: 0 2rem;
+  }
+
+  article h1 {
+    font-size: 2.125rem;
+  }
+}

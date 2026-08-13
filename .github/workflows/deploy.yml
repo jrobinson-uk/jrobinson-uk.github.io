@@ -12,28 +12,33 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v5.0.0
+        with:
+          # Quartz reads git history to date pages, so a shallow clone isn't enough.
+          fetch-depth: 0
 
-      - uses: actions/setup-node@v4.4.0
+      - uses: actions/setup-node@v5.0.0
         with:
           node-version: 22
           cache: npm
 
       - run: npm ci
 
+      # Generates responsive stills and animated WebP, then builds. Fails the build
+      # on any image without alt text.
       - run: npm run build
 
       - uses: actions/configure-pages@v5.0.0
 
-      - uses: actions/upload-pages-artifact@v3.0.1
+      - uses: actions/upload-pages-artifact@v4.0.0
         with:
-          path: _site
+          path: public
 
   deploy:
     needs: build
