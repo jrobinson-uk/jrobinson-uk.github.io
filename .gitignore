@@ -1,5 +1,10 @@
 node_modules/
 .DS_Store
+tsconfig.tsbuildinfo
+
+# The vault is content/. A stray .obsidian at the repo root just means Obsidian was
+# opened here by mistake; it holds no settings this site needs.
+/.obsidian/
 
 # Quartz build output and caches
 public/

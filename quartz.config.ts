@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import { RequireAltText } from "./quartz/plugins/transformers/requireAltText"
+import { ResponsiveImages } from "./quartz/plugins/transformers/responsiveImages"
 import * as Plugin from "./quartz/plugins"
 import * as Component from "./quartz/components"
 
@@ -68,6 +69,8 @@ const config: QuartzConfig = {
       Plugin.Description(),
       // Fails the build on any image without meaningful alt text.
       RequireAltText(),
+      // Rewrites body images to responsive <picture> using the generated derivatives.
+      ResponsiveImages(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [

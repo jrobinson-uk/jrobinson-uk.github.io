@@ -30,7 +30,14 @@ export const sharedPageComponents: SharedLayout = {
 
 // A single project page: title, then the writing. Nothing else.
 export const defaultContentPageLayout: PageLayout = {
-  beforeBody: [Component.ArticleTitle()],
+  beforeBody: [
+    Component.ArticleTitle(),
+    // Summary and hero image, on project pages only.
+    Component.ConditionalRender({
+      component: Component.ProjectHero(),
+      condition: (props) => (props.fileData.slug ?? "").includes("/"),
+    }),
+  ],
   left: [],
   right: [],
 }

@@ -1,29 +1,7 @@
-import fs from "fs"
-import path from "path"
 import { JSX } from "preact"
 import { QuartzPluginData } from "../plugins/vfile"
 import { FullSlug, resolveRelative } from "../util/path"
-
-type Derivative = { w: number; src: string }
-type ManifestEntry = {
-  width: number | null
-  height: number | null
-  animated: boolean
-  still: Record<string, Derivative[]>
-  anim: { src: string; w: number; frames: number; sourceFrames: number; bytes: number } | null
-}
-
-/**
- * Written by scripts/prepare-images.mjs before the build. Read once at module load.
- * An empty manifest is a normal state — it just means no photographs exist yet.
- */
-const MANIFEST_PATH = path.join(process.cwd(), "content/assets/derived/manifest.json")
-let manifest: Record<string, ManifestEntry> = {}
-try {
-  manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"))
-} catch {
-  manifest = {}
-}
+import { lookup, srcsetOf } from "../imageManifest"
 
 export type Hero = { src?: string; alt?: string }
 
@@ -35,9 +13,6 @@ export function summaryOf(data: QuartzPluginData): string | undefined {
   const s = data.frontmatter?.summary
   return typeof s === "string" ? s : undefined
 }
-
-const srcset = (list: Derivative[] | undefined) =>
-  list && list.length ? list.map((d) => `${d.src} ${d.w}w`).join(", ") : undefined
 
 /**
  * The preview image for a tile.
@@ -56,7 +31,7 @@ export function PreviewImage({
   sizes: string
   eager?: boolean
 }): JSX.Element {
-  const entry = hero.src ? manifest[hero.src] : undefined
+  const entry = lookup(hero.src)
   const alt = hero.alt ?? ""
 
   if (!hero.src || !entry) {
@@ -83,18 +58,22 @@ export function PreviewImage({
         <source
           media="(prefers-reduced-motion: reduce)"
           type="image/webp"
-          srcset={srcset(entry.still.webp)}
+          srcset={srcsetOf(entry.still.webp)}
           sizes={sizes}
         />
       )}
       {entry.anim && (
         <source type="image/webp" srcset={`${entry.anim.src} ${entry.anim.w}w`} sizes={sizes} />
       )}
-      {!entry.anim && <source type="image/avif" srcset={srcset(entry.still.avif)} sizes={sizes} />}
-      {!entry.anim && <source type="image/webp" srcset={srcset(entry.still.webp)} sizes={sizes} />}
+      {!entry.anim && (
+        <source type="image/avif" srcset={srcsetOf(entry.still.avif)} sizes={sizes} />
+      )}
+      {!entry.anim && (
+        <source type="image/webp" srcset={srcsetOf(entry.still.webp)} sizes={sizes} />
+      )}
       <img
         src={fallback}
-        srcset={srcset(jpeg)}
+        srcset={srcsetOf(jpeg)}
         sizes={sizes}
         alt={alt}
         width={entry.width ?? undefined}

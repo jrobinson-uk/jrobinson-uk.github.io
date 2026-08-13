@@ -46,8 +46,22 @@ body {
 
 // ---- typography ----
 
+// The article is as wide as the page frame, but text inside it is held to a readable
+// measure. That way an image or an iteration line-up can break wider than the prose,
+// which is what the site plan asks for, without any negative-margin trickery.
 article {
-  max-width: var(--measure);
+  max-width: var(--wide);
+
+  & > p,
+  & > ul,
+  & > ol,
+  & > dl,
+  & > blockquote,
+  & > h2,
+  & > h3,
+  & > h4 {
+    max-width: var(--measure);
+  }
 
   & h1 {
     font-size: 1.75rem;
@@ -72,15 +86,30 @@ article {
   // Consecutive images in one paragraph become an iteration line-up: two to four
   // versions of the same object side by side, which the site plan calls the most
   // persuasive image on the whole site.
-  & p:has(img + img) {
+  //
+  // Matches `picture` as well as `img`, because the ResponsiveImages transformer wraps
+  // every body image it recognises.
+  & > p:has(picture + picture),
+  & > p:has(img + img) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
+    // Overrides the readable measure applied to paragraphs above.
     max-width: var(--wide);
 
+    & picture,
     & img {
+      display: block;
       width: 100%;
+      // The per-image intrinsic cap would otherwise leave ragged gaps in the row.
+      max-width: 100%;
       margin: 0;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    & > p:has(picture + picture + picture + picture) {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 }

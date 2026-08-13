@@ -29,9 +29,11 @@ const STILL_WIDTHS = [480, 800, 1200, 1600]
 const STILL_FORMATS = ["avif", "webp", "jpeg"]
 
 const ANIM_WIDTH = 480 // tiles render at ~350px; 480 covers 2× on the short edge
+// A tile animation is decoration, and on a landing page it is the largest thing above
+// the fold. Kept small enough not to dominate largest-contentful-paint.
 const ANIM_QUALITY = 60
-const ANIM_BUDGET_BYTES = 900 * 1024
-const FRAME_STEPS = [1, 2, 3, 4, 6, 8, 12]
+const ANIM_BUDGET_BYTES = 350 * 1024
+const PROBE_STEP = 8 // first attempt; the rest is calculated from its cost per frame
 
 const exists = async (p) => !!(await fs.stat(p).catch(() => null))
 const mb = (b) => (b / 1024 / 1024).toFixed(2)
@@ -107,11 +109,24 @@ async function generate(file) {
   if (animated) {
     const name = `${stem}-anim.webp`
     const outPath = path.join(OUT_DIR, name)
-    let result
-    for (const step of FRAME_STEPS) {
-      result = await encodeAnimated(srcPath, meta, step, ANIM_WIDTH, outPath)
-      result.step = step
-      if (result.bytes <= ANIM_BUDGET_BYTES) break
+
+    // Encoding a long animation at high effort is slow, so rather than trying every
+    // frame rate in turn, probe once, measure the cost per frame, and calculate the
+    // step needed to hit the budget. Usually two encodes instead of eight.
+    let result = await encodeAnimated(srcPath, meta, PROBE_STEP, ANIM_WIDTH, outPath)
+    result.step = PROBE_STEP
+
+    if (result.bytes > ANIM_BUDGET_BYTES) {
+      const bytesPerFrame = result.bytes / result.frames
+      const affordableFrames = Math.max(2, Math.floor(ANIM_BUDGET_BYTES / bytesPerFrame))
+      let step = Math.max(PROBE_STEP + 1, Math.ceil(meta.pages / affordableFrames))
+
+      for (let attempt = 0; attempt < 3 && step <= meta.pages; attempt++) {
+        result = await encodeAnimated(srcPath, meta, step, ANIM_WIDTH, outPath)
+        result.step = step
+        if (result.bytes <= ANIM_BUDGET_BYTES) break
+        step = Math.ceil(step * 1.5)
+      }
     }
     entry.anim = {
       src: `/assets/derived/${name}`,
@@ -122,7 +137,7 @@ async function generate(file) {
     }
     if (result.bytes > ANIM_BUDGET_BYTES) {
       console.warn(
-        `  ! ${file}: ${mb(result.bytes)} MB even at 1 frame in ${result.step} — over the ` +
+        `  ! ${file}: ${mb(result.bytes)} MB at 1 frame in ${result.step} — over the ` +
           `${mb(ANIM_BUDGET_BYTES)} MB budget. Consider a shorter clip, or an MP4 hero.`,
       )
     }
@@ -130,6 +145,35 @@ async function generate(file) {
 
   return entry
 }
+
+/**
+ * Reuses the previous manifest entry when the source hasn't changed since the
+ * derivatives were written. Encoding an animated WebP searches several frame rates at
+ * high effort, which takes minutes — far too slow to repeat on every build.
+ */
+async function cached(file, previous) {
+  const entry = previous?.[file]
+  if (!entry) return null
+
+  const srcStat = await fs.stat(path.join(IMG_DIR, file)).catch(() => null)
+  if (!srcStat) return null
+
+  const outputs = [
+    ...Object.values(entry.still ?? {}).flatMap((list) => list.map((d) => d.src)),
+    ...(entry.anim ? [entry.anim.src] : []),
+  ].map((src) => path.join(OUT_DIR, path.basename(src)))
+
+  for (const out of outputs) {
+    const stat = await fs.stat(out).catch(() => null)
+    if (!stat || stat.mtimeMs < srcStat.mtimeMs) return null
+  }
+  return outputs.length ? entry : null
+}
+
+const previous = await fs
+  .readFile(MANIFEST, "utf8")
+  .then(JSON.parse)
+  .catch(() => ({}))
 
 const sources = await listSources()
 if (!sources.length) {
@@ -143,7 +187,12 @@ await fs.mkdir(OUT_DIR, { recursive: true })
 const manifest = {}
 for (const file of sources) {
   try {
-    const entry = (manifest[file] = await generate(file))
+    const reused = await cached(file, previous)
+    const entry = (manifest[file] = reused ?? (await generate(file)))
+    if (reused) {
+      console.log(`  ${file}  unchanged, reusing derivatives`)
+      continue
+    }
     const note = entry.anim
       ? `animated: ${entry.anim.frames}/${entry.anim.sourceFrames} frames, ${mb(entry.anim.bytes)} MB WebP`
       : "still only"
