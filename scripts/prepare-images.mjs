@@ -29,10 +29,11 @@ const STILL_WIDTHS = [480, 800, 1200, 1600]
 const STILL_FORMATS = ["avif", "webp", "jpeg"]
 
 const ANIM_WIDTH = 480 // tiles render at ~350px; 480 covers 2× on the short edge
-// A tile animation is decoration, and on a landing page it is the largest thing above
-// the fold. Kept small enough not to dominate largest-contentful-paint.
+// Budget for an animation. Generous enough for a recognisable loop, small enough that a
+// page carrying one still loads quickly. Note: changing this does not invalidate the
+// derivative cache below — delete the -anim.webp file to force a re-encode.
 const ANIM_QUALITY = 60
-const ANIM_BUDGET_BYTES = 350 * 1024
+const ANIM_BUDGET_BYTES = 500 * 1024
 const PROBE_STEP = 8 // first attempt; the rest is calculated from its cost per frame
 
 const exists = async (p) => !!(await fs.stat(p).catch(() => null))

@@ -24,6 +24,14 @@ export const sharedPageComponents: SharedLayout = {
       component: Component.WorkIndex(),
       condition: (props) => props.fileData.slug === "work",
     }),
+    // Links block, on project pages only.
+    Component.ConditionalRender({
+      component: Component.ProjectLinks(),
+      condition: (props) => {
+        const slug = props.fileData.slug ?? ""
+        return slug.includes("/") && !slug.endsWith("/index")
+      },
+    }),
   ],
   footer: Component.PortfolioFooter(),
 }

@@ -1,3 +1,4 @@
+import ProjectLinks from "./ProjectLinks"
 import ProjectHero from "./ProjectHero"
 import PortfolioFooter from "./PortfolioFooter"
 import CategoryPage from "./pages/CategoryPage"
@@ -31,6 +32,7 @@ import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 
 export {
+  ProjectLinks,
   ProjectHero,
   PortfolioFooter,
   CategoryPage,
