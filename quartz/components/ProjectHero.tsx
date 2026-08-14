@@ -14,11 +14,32 @@ import { PreviewImage, heroOf, summaryOf } from "./ProjectTile"
 const ProjectHero: QuartzComponent = ({ fileData }: QuartzComponentProps) => {
   const hero = heroOf(fileData)
   const summary = summaryOf(fileData)
-  if (!summary && !hero.src) return null
+  const year = fileData.frontmatter?.year
+  const tools = fileData.frontmatter?.tools
+  const toolList = Array.isArray(tools) ? tools.filter((t) => typeof t === "string") : []
+  const hasMeta = year !== undefined || toolList.length > 0
+
+  if (!summary && !hero.src && !hasMeta) return null
 
   return (
     <div class="project-hero">
       {summary && <p class="project-summary">{summary}</p>}
+      {hasMeta && (
+        <dl class="project-meta">
+          {year !== undefined && (
+            <>
+              <dt>Year</dt>
+              <dd>{String(year)}</dd>
+            </>
+          )}
+          {toolList.length > 0 && (
+            <>
+              <dt>Tools</dt>
+              <dd>{toolList.join(", ")}</dd>
+            </>
+          )}
+        </dl>
+      )}
       {hero.src && (
         <div class="project-hero-media">
           <PreviewImage hero={hero} sizes="(min-width: 60rem) 58rem, 100vw" eager />
@@ -34,6 +55,17 @@ ProjectHero.css = `
   color: var(--darkgray);
   font-size: 1.1875rem;
 }
+.project-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 1rem;
+  max-width: 34rem;
+  margin: 0;
+  font-size: 0.9375rem;
+}
+.project-meta dt { color: var(--gray); }
+.project-meta dd { margin: 0; }
+
 .project-hero-media {
   margin: 1.5rem 0 2.625rem;
   max-width: 58rem;

@@ -89,6 +89,20 @@ article {
   //
   // Matches `picture` as well as `img`, because the ResponsiveImages transformer wraps
   // every body image it recognises.
+  // A paragraph that is nothing but an image breaks wider than the prose. Diagrams and
+  // instruction sheets carry detail that a 34rem column throws away.
+  & > p:has(> picture:only-child),
+  & > p:has(> img:only-child) {
+    max-width: var(--wide);
+
+    & picture,
+    & img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
   & > p:has(picture + picture),
   & > p:has(img + img) {
     display: grid;

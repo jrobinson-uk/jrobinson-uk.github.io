@@ -1,6 +1,7 @@
 ---
 title: Solderless NOT gate
 summary: A logic gate rebuilt with a transistor and copper tape instead of relays and solder, so it could be made in any classroom or club.
+year: 2025
 order: 2
 draft: false
 featured: true
@@ -38,7 +39,10 @@ sits in a 3D-printed template shaped like the NOT gate symbol itself, so the art
 and the notation are the same object.
 
 I am comfortable building circuits but not experienced at designing them, so this began
-with research into how few components a NOT gate could need.
+with research into how few components a NOT gate could need, and a diagram worked out on
+whatever was to hand.
+
+![A circuit diagram drawn by hand in biro on a green sticky note, labelled GND along the top, IN on the left, +ve at the bottom and OUT on the right, with a transistor and a resistor sketched between them.](assets/img/not-gate-00-diagram.jpg)
 
 ![The first working circuit: bare wires, alligator clips and copper tape spread across a carpet next to a breadboard and a hand-drawn circuit diagram, with a green LED lit.](assets/img/not-gate-01-bare-wires.jpg) ![A copper tape circuit taped to a sheet of lined paper, labelled IN and OUT by hand, with two resistors, a transistor and a green LED lit brightly.](assets/img/not-gate-02-paper.jpg) ![A 3D-printed yellow triangular template with square copper tape pads, two blue resistors and a black transistor pushed into moulded holes.](assets/img/not-gate-03-template.jpg) ![The final template printed at 3mm thick and bare, with channels moulded to guide the copper tape.](assets/img/not-gate-04-final-print.jpg)
 
@@ -67,6 +71,8 @@ learners took part, aged between five and fourteen. The session ran in four step
 build the circuit from step-by-step pictures, test it, debug it if needed, then use it
 in a flood defence model.
 
+![A seven-step illustrated assembly guide. Apply copper tape to the grooves; wrap the tape over to the top side; insert the resistors into the marked locations; prepare the transistor by spreading its legs; insert the resistors and transistor; fold the component legs onto the tracks; apply a second layer of tape to secure everything.](assets/img/not-gate-assembly-guide.jpg)
+
 Three things went wrong, all usefully. A small pad of copper tape in the centre of the
 circuit turned out to be fiddly to place. Some learners still finished with loose
 connections between the tape and the components — at 6mm thick, the print left the
@@ -81,7 +87,9 @@ soldering iron posed problems, and so does copper tape.
 
 The failures were all about contact, not logic. The first prototype blew its transistor
 because I applied too much current, and the fix was as much protective as it was
-electrical — a second resistor on the transistor input. After that, every problem was a
+electrical — a second resistor on the transistor input.
+
+![A 3D-printed gate with "V2 dead" written across it in marker pen, a single resistor, a transistor and a green LED still fitted, lying on a wooden table.](assets/img/not-gate-v2-dead.jpg) After that, every problem was a
 person's ability to press tape onto a surface that gave them no help. So the changes
 went into the housing: the print dropped from 6mm to 3mm so component legs could reach,
 the copper tracks were rearranged simpler and longer, and I built a baseplate that both
