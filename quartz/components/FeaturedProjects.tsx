@@ -1,5 +1,5 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import { featuredProjects } from "../portfolio"
+import { featuredEntries } from "../portfolio"
 import { ProjectTile, tileStyles } from "./ProjectTile"
 
 /**
@@ -7,7 +7,7 @@ import { ProjectTile, tileStyles } from "./ProjectTile"
  * Renders nothing at all if nothing is featured, rather than an empty heading.
  */
 const FeaturedProjects: QuartzComponent = ({ allFiles, fileData }: QuartzComponentProps) => {
-  const featured = featuredProjects(allFiles)
+  const featured = featuredEntries(allFiles)
   if (featured.length === 0) return null
 
   return (

@@ -1,9 +1,15 @@
 ---
 title: Prototyping with agentic AI
 summary: Closing the gap between knowing what's technically possible and having a testable version of it.
-order: 4
 draft: false
 featured: true
+categories:
+  - making
+tags:
+  - ai
+  - agentic-tools
+  - python
+  - git
 tools:
   - Agentic coding tools
   - Git

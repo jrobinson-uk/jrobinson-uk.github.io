@@ -80,6 +80,8 @@ const config: QuartzConfig = {
       // Category index pages. Quartz routes */index through FolderPage, not
       // ContentPage, so the category listings are configured here.
       Plugin.FolderPage({ pageBody: Component.CategoryPage() }),
+      // Topical tag pages, listed as tiles rather than Quartz's dated text list.
+      Plugin.TagPage({ pageBody: Component.TagEntries() }),
       Plugin.ContentIndex({ enableSiteMap: true, enableRSS: false }),
       Plugin.Assets(),
       Plugin.Static(),

@@ -1,3 +1,4 @@
+import TagEntries from "./pages/TagEntries"
 import ProjectLinks from "./ProjectLinks"
 import ProjectHero from "./ProjectHero"
 import PortfolioFooter from "./PortfolioFooter"
@@ -32,6 +33,7 @@ import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 
 export {
+  TagEntries,
   ProjectLinks,
   ProjectHero,
   PortfolioFooter,

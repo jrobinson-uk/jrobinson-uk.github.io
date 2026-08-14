@@ -1,9 +1,15 @@
 import { QuartzPluginData } from "./plugins/vfile"
 
 /**
- * The categories a project can be logged under. A category is a folder in
- * `content/`, so adding one means creating the folder and adding a line here.
- * Order controls the order sections appear on /work and in the nav.
+ * The controlled list of categories an entry can belong to.
+ *
+ * Categories are metadata, not folders: an entry declares `categories: [making,
+ * publications]` in its front matter and appears under both. The folder an entry
+ * lives in only decides its URL, and acts as a default if it declares no
+ * categories at all.
+ *
+ * This list drives navigation, so it stays short. Topical labels go in `tags`,
+ * which is free-form.
  */
 export const CATEGORIES = [
   { slug: "making", label: "Making" },
@@ -21,17 +27,53 @@ export function labelFor(slug: string): string {
   return CATEGORIES.find((c) => c.slug === slug)?.label ?? slug
 }
 
-/** The category folder a page sits in, or undefined if it isn't in one. */
-export function categoryOf(page: QuartzPluginData): string | undefined {
+/** The folder an entry sits in. Only used as a fallback and to build URLs. */
+export function folderOf(page: QuartzPluginData): string | undefined {
   const segments = (page.slug ?? "").split("/")
   if (segments.length < 2) return undefined
   return CATEGORY_SLUGS.includes(segments[0]) ? segments[0] : undefined
 }
 
-/** A project is any page inside a category folder that isn't the folder's index. */
-export function isProject(page: QuartzPluginData): boolean {
+/**
+ * Every category an entry belongs to, from front matter. Unknown values are
+ * dropped rather than silently creating a category that has no page, and an entry
+ * that declares none falls back to its folder so nothing disappears.
+ */
+export function categoriesOf(page: QuartzPluginData): string[] {
+  const declared = page.frontmatter?.categories
+  const list = Array.isArray(declared) ? declared : declared ? [declared] : []
+  const valid = list
+    .filter((c): c is string => typeof c === "string")
+    .map((c) => c.trim().toLowerCase())
+    .filter((c) => CATEGORY_SLUGS.includes(c))
+
+  if (valid.length > 0) return [...new Set(valid)]
+  const folder = folderOf(page)
+  return folder ? [folder] : []
+}
+
+/** Free-form topical tags, distinct from categories. */
+export function tagsOf(page: QuartzPluginData): string[] {
+  const tags = page.frontmatter?.tags
+  if (!Array.isArray(tags)) return []
+  return [...new Set(tags.filter((t): t is string => typeof t === "string"))]
+}
+
+/** An entry is any page in a category folder that isn't that folder's index. */
+export function isEntry(page: QuartzPluginData): boolean {
   const segments = (page.slug ?? "").split("/")
-  return categoryOf(page) !== undefined && segments[segments.length - 1] !== "index"
+  return folderOf(page) !== undefined && segments[segments.length - 1] !== "index"
+}
+
+function yearOf(page: QuartzPluginData): number {
+  const year = page.frontmatter?.year
+  if (typeof year === "number") return year
+  // Handles ranges like "2022–2023" by sorting on the latest year mentioned.
+  if (typeof year === "string") {
+    const years = year.match(/\d{4}/g)
+    if (years?.length) return Math.max(...years.map(Number))
+  }
+  return -Infinity // undated entries sort last
 }
 
 function orderOf(page: QuartzPluginData): number {
@@ -39,28 +81,48 @@ function orderOf(page: QuartzPluginData): number {
   return typeof order === "number" ? order : Number.MAX_SAFE_INTEGER
 }
 
-const byOrderThenTitle = (a: QuartzPluginData, b: QuartzPluginData) =>
+/**
+ * Newest first. `order` only breaks ties within the same year, so it's there if
+ * you want it but nothing needs it.
+ */
+const byYearThenOrder = (a: QuartzPluginData, b: QuartzPluginData) =>
+  yearOf(b) - yearOf(a) ||
   orderOf(a) - orderOf(b) ||
   String(a.frontmatter?.title ?? "").localeCompare(String(b.frontmatter?.title ?? ""))
 
-export function allProjects(allFiles: QuartzPluginData[]): QuartzPluginData[] {
-  return allFiles.filter(isProject).sort(byOrderThenTitle)
+export function allEntries(allFiles: QuartzPluginData[]): QuartzPluginData[] {
+  return allFiles.filter(isEntry).sort(byYearThenOrder)
 }
 
-export function projectsIn(allFiles: QuartzPluginData[], category: string): QuartzPluginData[] {
-  return allProjects(allFiles).filter((p) => categoryOf(p) === category)
+export function entriesIn(allFiles: QuartzPluginData[], category: string): QuartzPluginData[] {
+  return allEntries(allFiles).filter((p) => categoriesOf(p).includes(category))
+}
+
+export function entriesTagged(allFiles: QuartzPluginData[], tag: string): QuartzPluginData[] {
+  return allEntries(allFiles).filter((p) => tagsOf(p).includes(tag))
 }
 
 /**
- * Projects flagged `featured: true` in front matter. This is the mechanism for
- * choosing what appears on the landing page — flip the flag to change the shop
- * window without moving or rewriting anything.
+ * Entries flagged `featured: true`. This is the mechanism for choosing what
+ * appears on the landing page — flip the flag to change the shop window without
+ * moving or rewriting anything.
  */
-export function featuredProjects(allFiles: QuartzPluginData[]): QuartzPluginData[] {
-  return allProjects(allFiles).filter((p) => p.frontmatter?.featured === true)
+export function featuredEntries(allFiles: QuartzPluginData[]): QuartzPluginData[] {
+  return allEntries(allFiles).filter((p) => p.frontmatter?.featured === true)
 }
 
-/** Categories that currently contain at least one project. */
+/** Categories that currently contain at least one entry. */
 export function populatedCategories(allFiles: QuartzPluginData[]) {
-  return CATEGORIES.filter((c) => projectsIn(allFiles, c.slug).length > 0)
+  return CATEGORIES.filter((c) => entriesIn(allFiles, c.slug).length > 0)
+}
+
+/** Every tag in use, with counts, most-used first. */
+export function tagIndex(allFiles: QuartzPluginData[]): { tag: string; count: number }[] {
+  const counts = new Map<string, number>()
+  for (const page of allEntries(allFiles)) {
+    for (const tag of tagsOf(page)) counts.set(tag, (counts.get(tag) ?? 0) + 1)
+  }
+  return [...counts.entries()]
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag))
 }

@@ -2,9 +2,18 @@
 title: Solderless NOT gate
 summary: A logic gate rebuilt with a transistor and copper tape instead of relays and solder, so it could be made in any classroom or club.
 year: 2025
-order: 2
 draft: false
 featured: true
+categories:
+  - making
+  - research
+tags:
+  - electronics
+  - logic-gates
+  - copper-tape
+  - 3d-printing
+  - minecraft
+  - code-club
 tools:
   - Transistor
   - Resistors
@@ -89,7 +98,9 @@ The failures were all about contact, not logic. The first prototype blew its tra
 because I applied too much current, and the fix was as much protective as it was
 electrical — a second resistor on the transistor input.
 
-![A 3D-printed gate with "V2 dead" written across it in marker pen, a single resistor, a transistor and a green LED still fitted, lying on a wooden table.](assets/img/not-gate-v2-dead.jpg) After that, every problem was a
+![A 3D-printed gate with "V2 dead" written across it in marker pen, a single resistor, a transistor and a green LED still fitted, lying on a wooden table.](assets/img/not-gate-v2-dead.jpg)
+
+After that, every problem was a
 person's ability to press tape onto a surface that gave them no help. So the changes
 went into the housing: the print dropped from 6mm to 3mm so component legs could reach,
 the copper tracks were rearranged simpler and longer, and I built a baseplate that both

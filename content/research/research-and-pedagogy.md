@@ -1,8 +1,13 @@
 ---
 title: Research and pedagogy
 summary: The layer underneath the making — how I know whether any of it worked.
-order: 6
 draft: false
+categories:
+  - research
+tags:
+  - pedagogy
+  - msc
+  - debugging
 tools: []
 ---
 

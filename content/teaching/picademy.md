@@ -1,8 +1,12 @@
 ---
 title: Picademy
 summary: A two-day programme where educators built their own making projects rather than watching someone else build one.
-order: 5
 draft: false
+categories:
+  - teaching
+tags:
+  - professional-development
+  - educators
 tools: []
 hero:
   src: picademy-participant-builds.jpg

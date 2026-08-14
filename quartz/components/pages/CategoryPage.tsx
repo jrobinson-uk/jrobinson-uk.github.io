@@ -1,7 +1,7 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "../types"
 import { Root } from "hast"
 import { htmlToJsx } from "../../util/jsx"
-import { projectsIn } from "../../portfolio"
+import { entriesIn } from "../../portfolio"
 import { ProjectTile, tileStyles } from "../ProjectTile"
 
 /**
@@ -14,16 +14,16 @@ import { ProjectTile, tileStyles } from "../ProjectTile"
  */
 const CategoryPage: QuartzComponent = ({ fileData, tree, allFiles }: QuartzComponentProps) => {
   const category = (fileData.slug ?? "").split("/")[0]
-  const projects = projectsIn(allFiles, category)
+  const entries = entriesIn(allFiles, category)
   const intro = htmlToJsx(fileData.filePath!, tree as Root)
   const hasIntro = (fileData.text ?? "").trim().length > 0
 
   return (
     <div class="category-page">
       {hasIntro && <div class="category-intro">{intro}</div>}
-      {projects.length > 0 ? (
+      {entries.length > 0 ? (
         <ul class="tiles">
-          {projects.map((page) => (
+          {entries.map((page) => (
             <ProjectTile key={page.slug} page={page} currentSlug={fileData.slug!} />
           ))}
         </ul>

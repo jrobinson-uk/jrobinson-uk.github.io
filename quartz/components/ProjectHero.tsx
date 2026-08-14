@@ -1,5 +1,7 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { PreviewImage, heroOf, summaryOf } from "./ProjectTile"
+import { categoriesOf, tagsOf, labelFor } from "../portfolio"
+import { FullSlug, resolveRelative } from "../util/path"
 
 /**
  * The summary and hero image at the top of a project page.
@@ -17,14 +19,16 @@ const ProjectHero: QuartzComponent = ({ fileData }: QuartzComponentProps) => {
   const year = fileData.frontmatter?.year
   const tools = fileData.frontmatter?.tools
   const toolList = Array.isArray(tools) ? tools.filter((t) => typeof t === "string") : []
+  const categories = categoriesOf(fileData)
+  const tags = tagsOf(fileData)
   const hasMeta = year !== undefined || toolList.length > 0
 
-  if (!summary && !hero.src && !hasMeta) return null
+  if (!summary && !hero.src && !hasMeta && categories.length === 0 && tags.length === 0) return null
 
   return (
     <div class="project-hero">
       {summary && <p class="project-summary">{summary}</p>}
-      {hasMeta && (
+      {(hasMeta || categories.length > 0 || tags.length > 0) && (
         <dl class="project-meta">
           {year !== undefined && (
             <>
@@ -32,10 +36,38 @@ const ProjectHero: QuartzComponent = ({ fileData }: QuartzComponentProps) => {
               <dd>{String(year)}</dd>
             </>
           )}
+          {categories.length > 0 && (
+            <>
+              <dt>In</dt>
+              <dd>
+                {categories.map((slug, i) => (
+                  <>
+                    {i > 0 && ", "}
+                    <a href={resolveRelative(fileData.slug!, `${slug}/index` as FullSlug)}>
+                      {labelFor(slug)}
+                    </a>
+                  </>
+                ))}
+              </dd>
+            </>
+          )}
           {toolList.length > 0 && (
             <>
               <dt>Tools</dt>
               <dd>{toolList.join(", ")}</dd>
+            </>
+          )}
+          {tags.length > 0 && (
+            <>
+              <dt>Topics</dt>
+              <dd>
+                {tags.map((tag, i) => (
+                  <>
+                    {i > 0 && ", "}
+                    <a href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}>{tag}</a>
+                  </>
+                ))}
+              </dd>
             </>
           )}
         </dl>

@@ -36,24 +36,47 @@ first, which generates the image derivatives.
 
 That's the whole mechanism. Nothing needs registering anywhere.
 
-### Categories
+### Categories and topics
 
-Each is a folder in `content/`:
+An entry's **categories** are metadata, not its folder. Declare them in front matter and
+the entry appears under each one:
 
-| Folder | Appears as |
-| --- | --- |
-| `making/` | Making |
-| `research/` | Research |
-| `teaching/` | Teaching |
-| `writing/` | Writing |
-| `publications/` | Publications |
+```yaml
+categories: [making, publications]
+```
 
-A category with nothing in it is omitted from `/work` rather than shown empty. Its own
-page says "Nothing logged here yet."
+The controlled list is `making`, `research`, `teaching`, `writing`, `publications` —
+defined in `CATEGORIES` in `quartz/portfolio.ts`, which is also the ordering. Keep it
+short: it drives navigation. An unknown value is ignored rather than creating a category
+with no page, and an entry that declares none falls back to the folder it sits in.
 
-To add a category: create the folder, add a `index.md` with a `title`, and add a line
-to `CATEGORIES` in `quartz/portfolio.ts`. That array controls both ordering and which
-folders count as categories.
+The folder still decides the URL — `content/making/thing.md` is `/making/thing` — so it's
+worth putting an entry in the folder of its main category. But it isn't what makes the
+entry appear anywhere.
+
+**Topics** are free-form and separate:
+
+```yaml
+tags: [raspberry-pi, copper-tape, machine-learning]
+```
+
+Each one gets a page at `/tags/<topic>`, with an index at `/tags`. Use Obsidian's tag
+autocomplete. Topics are for browsing sideways; categories are for structure.
+
+A category with no entries is left out of the navigation rather than shown empty, and its
+own page says "Nothing logged here yet."
+
+### Ordering
+
+Listings are newest first, by the `year` field. Undated entries sort last. There's no
+order field to maintain — `order` still exists and breaks ties within the same year, but
+nothing needs it.
+
+`/work` is the archive: every entry once, newest first, with category and topic counts
+above it. Category pages are the filtered views. The archive deliberately doesn't group
+by category, because an entry in two categories would be listed twice.
+
+`featured: true` is separate from all of this and controls the landing page only.
 
 ### Front matter
 
@@ -61,7 +84,9 @@ folders count as categories.
 ---
 title: LEGO Face
 summary: An articulated LEGO face that reads objects with a Raspberry Pi camera.
-order: 1              # sort position within its category
+year: 2020            # drives ordering; listings are newest first
+categories: [making, publications]
+tags: [raspberry-pi, lego, machine-learning]
 featured: true        # put it on the landing page
 draft: false          # true keeps it out of the built site entirely
 tools: [Raspberry Pi, Build HAT, LDraw]
@@ -177,11 +202,13 @@ Quartz's defaults are built for a note garden. These are the deviations:
 
 | File | What it does |
 | --- | --- |
-| `quartz/portfolio.ts` | Category definitions, project/featured selection |
+| `quartz/portfolio.ts` | Categories, tags, entry selection and ordering |
 | `quartz/components/ProjectTile.tsx` | Tile + the responsive/animated `<picture>` |
 | `quartz/components/FeaturedProjects.tsx` | Landing page shop window |
-| `quartz/components/WorkIndex.tsx` | `/work`, grouped by category |
+| `quartz/components/WorkIndex.tsx` | `/work` archive, newest first, with filters |
 | `quartz/components/pages/CategoryPage.tsx` | Category index bodies (replaces `FolderContent`) |
+| `quartz/components/pages/TagEntries.tsx` | Topic pages and the `/tags` index |
+| `quartz/components/ProjectHero.tsx` | Entry summary, meta line, hero image |
 | `quartz/components/PortfolioNav.tsx` | The header |
 | `quartz/components/PortfolioFooter.tsx` | Footer (the stock one fails WCAG AA on contrast) |
 | `quartz/plugins/transformers/requireAltText.ts` | Alt-text enforcement |
