@@ -40,9 +40,8 @@ links:
 Could the Build HAT support a project where physical LEGO responds expressively to the
 real world — and could a child build it from instructions?
 
-It was one of five projects built for the Build HAT's launch, and the one asked to carry
-machine learning. So there was a second question underneath: what does machine learning
-look like when a nine-year-old can see it working, on a table, without a cloud account?
+There was a second question underneath it: what does machine learning look like when a
+nine-year-old can see it working, on a table, without a cloud account?
 
 ## What I made
 
@@ -86,9 +85,8 @@ place and the right size.
 ![A Raspberry Pi Camera Module held in a pink 3D-printed bracket, its ribbon cable trailing away to one side.](assets/img/lego-face-camera-mount.jpg)
 
 Not all of it was mine. Two designers at LEGO Education reviewed the build and changed
-two of its mechanisms, and the eyebrows were their idea rather than mine. I then handed
-the prototype to a colleague, who turned it into a project conforming to the technical
-specification our published projects follow.
+two of its mechanisms, and the eyebrows were their idea rather than mine. I then handed the
+prototype to a colleague, who turned it into the published project.
 
 ## How it was tested
 
@@ -97,7 +95,7 @@ camera mount, and the way I had attached the eyes. The bracket that holds the LE
 matrices was their suggestion. The eyebrows were theirs outright — the model gained a
 whole axis of expression because somebody else looked at it.
 
-After that, limited testing with internal team members and a couple of children. There
+After that, limited testing with colleagues and a couple of children. There
 was one kit, which caps how much testing you can do. It did not go through anything
 rigorous and I would not claim otherwise.
 
