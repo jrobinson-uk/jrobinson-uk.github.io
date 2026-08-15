@@ -85,9 +85,40 @@ place and the right size.
 
 ![A Raspberry Pi Camera Module held in a pink 3D-printed bracket, its ribbon cable trailing away to one side.](assets/img/lego-face-camera-mount.jpg)
 
-Learning designers at the Raspberry Pi Foundation then turned the prototype into the
-published project. LEGO Education designers reviewed it and suggested refinements to the
-mechanisms holding the non-LEGO components.
+Not all of it was mine. Two designers at LEGO Education reviewed the build and changed
+two of its mechanisms, and the eyebrows were their idea rather than mine. I then handed
+the prototype to a colleague, who turned it into a project conforming to the technical
+specification our published projects follow.
+
+## How it was tested
+
+The two LEGO Education designers saw it first, and their feedback was specific: the
+camera mount, and the way I had attached the eyes. The bracket that holds the LED
+matrices was their suggestion. The eyebrows were theirs outright — the model gained a
+whole axis of expression because somebody else looked at it.
+
+After that, limited testing with internal team members and a couple of children. There
+was one kit, which caps how much testing you can do. It did not go through anything
+rigorous and I would not claim otherwise.
+
+## What I learned
+
+The camera bracket is the part I remain dissatisfied with. Making the Pi camera fit meant
+3D printing an extra component, which is an extra step for everyone who ever builds this,
+and a step that needs a printer to complete. That is why I took the mounting problem to
+LEGO rather than solving it again myself — I wanted the answer to be parts people already
+had, not another thing to fabricate.
+
+Building against a product that had not shipped yet was the other lesson. The Build HAT
+and its Python API were still being developed while the project was being written, so the
+ground moved underneath it. Frustrating rather than fatal, but it is a different kind of
+work from building on something finished, and worth budgeting for.
+
+The machine learning was the part I expected to be fragile, and it was the part that
+behaved. A relatively simple pre-trained model, a few thousand objects it could recognise,
+and it held up in front of children. What made it teachable was not the accuracy though —
+it was the uncertainty. The activity talks about confidence thresholds and probability, so
+what lands is that this is a system which guesses, and can be wrong.
 
 ## Where it went
 
