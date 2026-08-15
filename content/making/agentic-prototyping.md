@@ -1,6 +1,6 @@
 ---
 title: Prototyping with agentic AI
-summary: Raising the ceiling on what I can build myself, and staying the one making the decisions.
+summary: Raising the ceiling on what I can build myself, and staying the one who decides.
 draft: false
 featured: true
 categories:
@@ -10,10 +10,17 @@ tags:
   - agentic-tools
   - python
   - git
+  - google-apps-script
 tools:
   - Agentic coding tools
   - Git and GitHub
   - Python
+  - Google Apps Script
+links:
+  - label: Literature search tool (GitHub)
+    url: https://github.com/jrobinson-uk/Literature-Search
+  - label: CEFR vocabulary analyser (GitHub)
+    url: https://github.com/jrobinson-uk/CEFR_script
 ---
 
 ## The question
@@ -25,6 +32,34 @@ I wanted built and handed the building to someone else.
 
 Could agentic tooling close that gap? Not to do the thinking, but to raise the ceiling on
 what I can reach on my own.
+
+## What I made
+
+Mostly prototypes whose job is to make an idea real enough to judge. Some get picked up
+and rebuilt properly by people who do this for a living. Some stay rough, because they
+point inward and rough is fine when the value is in the doing.
+
+Two of them are public.
+
+A **literature search tool** that runs inside Google Sheets. Give it terms and it
+searches, then chases citations outward — snowball sampling — assembling what it finds
+into a spreadsheet you can actually work in. The Apps Script behind it was agent-written.
+
+A **CEFR vocabulary analyser** that reads definition text and flags any word above a
+target language level, so glossary entries can be checked against a readability standard
+rather than against a hunch. It reports the proportion of words within level, the ones
+that breached it, and the highest level found.
+
+The second is worth a note, because it makes the distinction I care about. The analyser
+contains no AI at all: it wraps a reference dataset and returns the same answer every
+time. The agent built the tool; the tool is deterministic. For something whose job is to
+judge whether learning material is readable, "the same input gives the same answer" is a
+requirement rather than a nicety, and that was a decision, not an accident.
+
+The rest isn't mine to show — small tools that sit alongside software a team already uses,
+prototypes exploring how these models might work inside products, and an authoring
+pipeline that replaces a manual InDesign process with a text-based one: typesetting as
+source, history in Git, several tools in a single workflow.
 
 ## What I learned
 
