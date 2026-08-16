@@ -1,0 +1,62 @@
+---
+title: Status Cube
+summary: A cube you roll onto one face to set your Slack status. Built for myself, and still being built.
+year: 2026
+draft: false
+featured: false
+categories:
+  - making
+tags:
+  - raspberry-pi-pico
+  - micropython
+  - slack
+  - 3d-printing
+  - sensors
+tools:
+  - Raspberry Pi Pico W
+  - MPU-9250
+  - MicroPython
+  - 3D printing
+  - Slack API
+---
+
+## The question
+
+Setting your status is a menu, four clicks deep, and so nobody does it. Could it be a
+physical act instead — something you do with your hand, on the desk, in the moment you
+actually change what you are doing?
+
+## What I made
+
+A cube with a Raspberry Pi Pico W and a nine-axis sensor inside, running MicroPython.
+Roll it so a face is up and it sets your Slack status: the words, the emoji, whether you
+appear online or away, and whether notifications are snoozed.
+
+Six faces, six states. Available, Do Not Disturb, In a Meeting, Lunch, Focusing, Away.
+Which face is up is worked out from gravity — whichever axis of the accelerometer reads
+close to 1g is pointing down — and a face has to be held for two seconds before anything
+happens, so putting the cube down carelessly doesn't announce that you're at lunch.
+
+The part I like best is the setup. There is no button. To get the cube onto your WiFi you
+**shake it**, which opens a small web page for entering credentials, and shake it again to
+close it. That is not a flourish: it is a consequence of the enclosure being 3D printed
+and sealed. A button means a hole, a hole means an opening, and it turned out to be less
+work to teach the thing to recognise being shaken than to design a way in.
+
+The shake detector is deliberately dull about it. A resting cube reads about 1g and even a
+brisk roll stays near that, so the threshold sits well above normal handling: three
+separate spikes past 1.8g inside two seconds. A single shake is one long spike across many
+samples rather than one reading, so there's a refractory period to stop one gesture
+counting as three. It compares squared magnitudes to avoid computing a square root on
+every sample, which is the sort of thing you do when the computer costs six pounds.
+
+## What I learned
+
+So far, mostly that the physical constraints arrive first and the software bends around
+them. The sealed case produced the shake gesture. The sensor turned out to be unreliable
+on this board at 400 kHz and to read cleanly at 100 kHz, which is now a comment in the
+config file rather than something I will rediscover in a year.
+
+It isn't finished. The status light is still the Pico's onboard LED blinking twice to
+acknowledge a roll, with a note in the code to replace it once the RGB indicator is
+wired in.
