@@ -23,7 +23,7 @@ links:
 
 ## The question
 
-After computing became a curriculum subject in England, most of the effort went into
+After the 2012 curriculum reform in the UK, most of the effort went into
 subject knowledge. What do teachers need to know, and how do we upskill them in it — as
 though knowing the content were the same as knowing how to teach it.
 
@@ -62,9 +62,10 @@ invented it.
 
 The first sixteen or so were published by the National Centre for Computing Education,
 co-branded with Raspberry Pi. They have since moved entirely to the Raspberry Pi brand,
-and there are now around thirty in the set with more in production — many written by
+and there are now more than thirty in the set with more in production — many written by
 academics and researchers close to the work rather than by staff.
 
-They also turned out to be the precursor to the Big Book of Computing Pedagogy. The
-Foundation's own cross-promotion for the Quick Reads now points at the book, which is a
-reasonable measure of where the format ended up.
+They also turned out to be the precursor to
+[[the-big-book-of-computing-pedagogy|the Big Book of Computing Pedagogy]]. The Foundation's
+own cross-promotion for the Quick Reads now points at the book, which is a reasonable
+measure of where the format ended up.
