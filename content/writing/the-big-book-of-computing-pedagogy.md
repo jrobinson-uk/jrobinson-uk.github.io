@@ -57,7 +57,7 @@ editor — to pull the thing together.
 
 ## Where it went
 
-Given away to subscribers first, then several further print runs. Given away at
+Published in October 2021. Given away to subscribers first, then several further print runs. Given away at
 conferences, and sold to ship overseas for the people we couldn't post to for free.
 
 The reaction was well beyond anything I expected. People keep it on their shelves and call

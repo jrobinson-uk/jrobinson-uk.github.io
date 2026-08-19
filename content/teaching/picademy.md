@@ -27,3 +27,7 @@ I set up the US programme and oversaw its transition to being run by a colleague
 
 This is the evidence that I can establish a practice, not only produce within one.
 Handing it over intact mattered as much as starting it.
+
+## Where it went
+
+More than 2,000 educators went through the programme.
