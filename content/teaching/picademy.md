@@ -1,6 +1,7 @@
 ---
 title: Picademy
 summary: A two-day programme where educators built their own making projects rather than watching someone else build one.
+year: "2014–2019"
 draft: false
 categories:
   - teaching
@@ -21,7 +22,8 @@ made themselves, rather than something they had been shown.
 
 ## What I did myself
 
-I set up the US programme and oversaw its transition to being run by a colleague.
+I set up the North American programme, which ran from 2016 to 2019, and oversaw its
+transition to being run by a colleague.
 
 ## What I learned
 
@@ -30,4 +32,5 @@ Handing it over intact mattered as much as starting it.
 
 ## Where it went
 
-More than 2,000 educators went through the programme.
+More than 2,000 educators went through it. The UK programme ran from 2014 to 2019, and
+North America from 2016 to 2019.
