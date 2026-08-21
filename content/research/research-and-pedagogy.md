@@ -1,6 +1,7 @@
 ---
 title: Research and pedagogy
 summary: The layer underneath the making — how I know whether any of it worked.
+year: "2025–present"
 draft: false
 categories:
   - research
@@ -23,8 +24,8 @@ any of the making worked?
 
 ## What I made
 
-An MSc in STEM Education, examining how policy, practice and ideas about play, making and
-creativity meet in the classroom.
+An MSc in STEM Education, in progress since 2025, examining how policy, practice and ideas
+about play, making and creativity meet in the classroom.
 
 A dissertation on the affective, embodied and symbolic knowledge learners bring to bear
 when debugging physical computing projects.

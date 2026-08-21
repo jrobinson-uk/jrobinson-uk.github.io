@@ -68,8 +68,11 @@ export function isEntry(page: QuartzPluginData): boolean {
 function yearOf(page: QuartzPluginData): number {
   const year = page.frontmatter?.year
   if (typeof year === "number") return year
-  // Handles ranges like "2022–2023" by sorting on the latest year mentioned.
   if (typeof year === "string") {
+    // Ongoing work sorts as current: "2019–present" is something you are still
+    // doing, not something you did in 2019, so it belongs with this year's work.
+    if (/present|ongoing|now/i.test(year)) return Number.MAX_SAFE_INTEGER - 1
+    // A range like "2014–2019" sorts on the latest year mentioned.
     const years = year.match(/\d{4}/g)
     if (years?.length) return Math.max(...years.map(Number))
   }

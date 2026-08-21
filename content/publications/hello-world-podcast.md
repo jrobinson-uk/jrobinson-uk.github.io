@@ -1,6 +1,7 @@
 ---
 title: The Hello World podcast
 summary: Pedagogy for teachers who don't have time to read it — piloted scrappily, now a product other people run.
+year: "2021–present"
 draft: false
 featured: false
 categories:
@@ -12,7 +13,9 @@ tags:
   - pedagogy
   - presenting
 links:
-  - label: The Hello World podcast
+  - label: Listen to the Hello World podcast
+    url: https://helloworld.buzzsprout.com/1746662/episodes
+  - label: The podcast on the Hello World site
     url: https://helloworld.raspberrypi.org/podcast
 ---
 
@@ -37,7 +40,7 @@ already being written for _Hello World_ and turned it into a podcast series. Not
 of the magazine, but a use of the same material with something added: the writers talking
 about the thing they had written, and being asked about it.
 
-I ran and hosted that for two or three seasons.
+The first episode went out in May 2021. I ran and hosted it for two or three seasons.
 
 ## What I did myself
 
@@ -54,7 +57,7 @@ what the guest actually just told you.
 
 The Foundation took it on as a product and put real capacity behind it. There is now a
 full-time editor and a product manager who plan the episodes and publish the content, and I
-turn up to host.
+turn up to host. It has run to more than fifty episodes and is still going.
 
 That is the second time I've done this — build something small enough to prove, then hand it
 to people who can run it properly. [[picademy|Picademy]] was the first. I've come to think

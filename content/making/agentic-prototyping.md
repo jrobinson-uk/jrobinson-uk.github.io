@@ -1,6 +1,7 @@
 ---
 title: Prototyping with agentic AI
 summary: Raising the ceiling on what I can build myself, and staying the one who decides.
+year: "2025–present"
 draft: false
 featured: true
 categories:
