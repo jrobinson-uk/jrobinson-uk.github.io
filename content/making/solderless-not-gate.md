@@ -21,6 +21,11 @@ tools:
   - TinkerCAD
   - 3D printing
   - Minecraft
+links:
+  - label: "3D print files: the gate (STL)"
+    url: /assets/files/not-gate.stl
+  - label: "3D print files: the baseplate (STL)"
+    url: /assets/files/not-gate-baseplate.stl
 hero:
   src: not-gate-final.jpg
   alt: The final 3D-printed NOT gate, shaped like the logic gate symbol, with copper tape in moulded channels, two resistors, a transistor and a green LED in place.
@@ -115,8 +120,9 @@ finger made the circuit legible in a way the 3D-printed one wasn't.
 
 ## Where it went
 
-Not published yet. I intend to share the designs and to work out equivalents for the
-other logic gates.
+The print files are here: the [gate](/assets/files/not-gate.stl) at 3mm, and the
+[baseplate](/assets/files/not-gate-baseplate.stl) it clips into. Both are yours to print.
+I still intend to work out equivalents for the other logic gates.
 
 The 3D design is also exported as a flat SVG, printable at the right scale, so the same
 circuit can be built on paper. That drops the resource requirement again — no printer,
