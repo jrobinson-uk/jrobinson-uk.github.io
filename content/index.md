@@ -2,6 +2,5 @@
 title: James Robinson
 ---
 
-I'm a maker and educator who turns ambiguous ideas about learning into things
-children can put their hands on — physical computing, digital fabrication, and the
-pedagogy that decides whether any of it works.
+I make things to find out whether an idea about learning holds up, and I write about the
+pedagogy that decides whether it does.

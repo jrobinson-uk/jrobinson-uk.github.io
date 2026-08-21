@@ -5,21 +5,44 @@ description: James Robinson — maker and educator working across physical compu
 
 I make things children can put their hands on, and I find out whether they work.
 
-I started out teaching. That led into physical computing — Raspberry Pi, LEGO
-motors and sensors, microcontrollers, 3D printing, laser cutting — and into the
-question that sits under all of it: what does a learner actually have to do with
-their hands before an idea becomes theirs?
+## Before this
 
-Most of what I build exists to answer a question rather than to be a finished
-product. Could a logic gate work without a soldering iron? Could a child build
-an articulated LEGO face from instructions? Is a new sensor board worth
-anything to a classroom? A prototype answers that faster and more honestly than
-a specification does, so I build the prototype.
+I taught in England for nearly ten years.
 
-Underneath the making is the pedagogy — an MSc in STEM Education, a dissertation
-on what learners bring to bear when they debug physical computing projects, and
-ownership of the pedagogical principles and standards for a global education
-organisation. That work is how I know whether something worked. It isn't a
-separate career, and there's [[research-and-pedagogy|more on it here]].
+Seven of them were in a middle school. I started out teaching maths, along with science,
+history, geography and whatever else needed covering, and specialised fairly quickly in
+IT, as it was called then. I ended up head of the subject: training the team, reviewing
+and rewriting the curriculum, and pulling robotics, programming and physical computing
+into it.
+
+Then two and a half years in a secondary school, to teach more computing — which was my
+degree subject and the thing I had been circling the whole time. I introduced computer
+science at GCSE, supported the local computing community, and led a Computing At School
+hub, hosting teachers from around the area.
+
+Then I went on a two-day course called Picademy, run by the Raspberry Pi Foundation. I was
+already thinking about leaving teaching. Shortly afterwards they offered me a job, and I
+have been there since — which is how I later came to set up
+[[picademy|the same programme in North America]].
+
+## Now
+
+I'm a Senior Learning Manager for Development and Practice, working in a global team. We
+develop shared practice across the Foundation and document what actually works, help new
+projects and new teams get started, do research-to-practice work, and maintain the
+teaching and learning standards.
+
+## The method
+
+Most of what I build exists to answer a question rather than to be a finished product.
+Could a logic gate work without a soldering iron? Could a child build an articulated LEGO
+face from instructions? Is a new sensor board worth anything to a classroom? A prototype
+answers that faster and more honestly than a specification does, so I build the prototype.
+
+Underneath the making is the pedagogy — an MSc in STEM Education, a dissertation on what
+learners bring to bear when they debug physical computing projects, and the pedagogical
+principles and standards for a global education organisation. That work is how I know
+whether something worked. It isn't a separate career, and there's
+[[research-and-pedagogy|more on it here]].
 
 [[work|See the work]]
