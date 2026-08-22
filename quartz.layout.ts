@@ -33,7 +33,12 @@ export const sharedPageComponents: SharedLayout = {
       },
     }),
   ],
-  footer: Component.PortfolioFooter(),
+  footer: Component.PortfolioFooter({
+    links: {
+      GitHub: "https://github.com/jrobinson-uk",
+      LinkedIn: "https://www.linkedin.com/in/james-robinson-631467112/",
+    },
+  }),
 }
 
 // A single project page: title, then the writing. Nothing else.
