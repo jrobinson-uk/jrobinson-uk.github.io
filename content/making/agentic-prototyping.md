@@ -78,5 +78,17 @@ against when to make it stop and check. Get that wrong one way and you are typin
 everything yourself. Get it wrong the other way and you are reviewing a large amount of
 confident, plausible work that nobody asked for.
 
+The failure I hit most often is the agent hallucinating success. It reports that the build
+works, that the thing is done, with complete confidence and no basis for it. Telling it
+that it is wrong achieves very little — it will apologise and then repeat itself.
+
+What works is evidence. A screenshot of what the screen actually shows, the data it claims
+to have produced, the error it insists isn't there. Put the artefact in front of it and it
+corrects course.
+
+That is the real argument for working in stages. Being able to roll a change back matters,
+but the bigger thing is being able to see what actually happened at each step — because
+once I can see it, I can show it.
+
 Moving fast with these tools is not the skill. Moving fast and catching the failures is
 the skill.

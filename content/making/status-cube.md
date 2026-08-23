@@ -50,6 +50,23 @@ samples rather than one reading, so there's a refractory period to stop one gest
 counting as three. It compares squared magnitudes to avoid computing a square root on
 every sample, which is the sort of thing you do when the computer costs six pounds.
 
+## How it was tested
+
+Not tested, in the sense that would matter. It is still in prototyping, and here is how far
+it has got.
+
+The basic mechanism first, proved on a breadboard — read the accelerometer, work out which
+face is down, call Slack, watch the status change. Then a mount designed to sit inside a
+3D-printed wireframe cube, so the electronics could be positioned and the whole thing
+handled while still being visible. Then a full enclosure printed. Most recently, connection
+insets tested for a pogo pin cable, so the cube can sit on a dock to charge and talk to a
+computer.
+
+The pogo pins are the same argument as the shake gesture. A socket is a hole, and I wanted
+the case sealed. Contacts on the outside keep it that way, and the cube gets picked up and
+put back down rather than plugged in — which is what you want from something that lives on a
+desk and is meant to be handled.
+
 ## What I learned
 
 So far, mostly that the physical constraints arrive first and the software bends around
