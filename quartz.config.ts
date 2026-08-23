@@ -1,6 +1,7 @@
 import { QuartzConfig } from "./quartz/cfg"
 import { RequireAltText } from "./quartz/plugins/transformers/requireAltText"
 import { ResponsiveImages } from "./quartz/plugins/transformers/responsiveImages"
+import { StripReviewHighlights } from "./quartz/plugins/transformers/stripReviewHighlights"
 import * as Plugin from "./quartz/plugins"
 import * as Component from "./quartz/components"
 
@@ -71,6 +72,8 @@ const config: QuartzConfig = {
       RequireAltText(),
       // Rewrites body images to responsive <picture> using the generated derivatives.
       ResponsiveImages(),
+      // Editing marks: ==highlighted== prose is visible in Obsidian, never published.
+      StripReviewHighlights(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [

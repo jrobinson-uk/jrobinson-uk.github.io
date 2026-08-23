@@ -48,15 +48,15 @@ Three shifts, and they have changed how I build things.
 **The affective dimension is a driver, not a side effect.** I used to treat the fact that
 learners enjoy making as a pleasant consequence. I now think it is the mechanism: it is
 where persistence comes from, and persistence is what carries anybody through the
-frustrating middle of an iterative process. That is not sentimental. Watch what happens
-to a build when someone stops caring about it.
+frustrating middle of an iterative process. ==That is not sentimental. Watch what happens
+to a build when someone stops caring about it.==
 
 **Symbolic, embodied and affective knowledge are one interleaved thing.** I had held them
 as separate faculties with separate benefits. The [[solderless-not-gate|NOT gate]] is the
 clearest counter-example I have of my own: reasoning about the circuit found nothing, and
-picking it up and pressing it found the fault in seconds. Making is rarely purely abstract
+picking it up and pressing it found the fault in seconds. ==Making is rarely purely abstract
 or purely physical, and designing as though it were produces activities that only work for
-the learners who happen to lead with the mode you chose.
+the learners who happen to lead with the mode you chose.==
 
 **Agency and inclusion are the same problem.** Fostering a sense of belonging asks the
 educator to take a deliberate step back — to resist relieving a learner of control, even

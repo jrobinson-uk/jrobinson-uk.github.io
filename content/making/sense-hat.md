@@ -41,9 +41,9 @@ board's orientation into an angle, so you dial it by physically turning the thin
 location lock, which is the one that leaves the board entirely — it takes an optional USB
 GPS device and stays shut until you carry it to the right place.
 
-Puzzle boxes are centuries old and people still make them for the pleasure of it. That
+Puzzle boxes are centuries old and people still make them for the pleasure of it. ==That
 was the borrowed frame: the sensors stop being a datasheet and become the mechanism of a
-game. Nineteen steps, and it ends by asking the learner to invent locks of their own.
+game.== Nineteen steps, and it ends by asking the learner to invent locks of their own.
 
 **The polystyrene drop.** I wrapped a Sense HAT in polystyrene balls, threw it out of the
 office window, and derived the height of the building from the acceleration under gravity.
@@ -54,9 +54,9 @@ The cheapest way to find out what a new capability is for is to make several sma
 with it and see which ones people want to copy. A specification written first would have
 taken longer and been less convincing.
 
-The locks also taught me something about framing. A temperature sensor is a component; a
+==The locks also taught me something about framing. A temperature sensor is a component; a
 lock that opens when you cup your hands around it is a reason to care what a temperature
-sensor does.
+sensor does.==
 
 ## Where it went
 

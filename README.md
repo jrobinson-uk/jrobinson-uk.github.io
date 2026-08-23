@@ -160,6 +160,26 @@ embed produces. Both of these work:
 This is a custom transformer (`quartz/plugins/transformers/requireAltText.ts`) — Quartz
 has no equivalent.
 
+### Reviewing the prose
+
+Sentences awaiting James's review are wrapped in Obsidian highlights:
+
+```markdown
+==This sentence is Claude's construction, not James's.==
+```
+
+Obsidian shows them in yellow. They are **stripped from the built site** by
+`quartz/plugins/transformers/stripReviewHighlights.ts`, so the text reads normally in
+public while staying flagged in the vault. Every build prints a count per file:
+
+```
+[review] 3 highlighted passages awaiting review in content/making/status-cube.md
+```
+
+To review: read the highlighted sentence, then either rewrite it in your own words or
+delete the `==` markers to accept it as is. When no highlights remain, the transformer and
+this section can both go.
+
 ## Writing in Obsidian
 
 **Open `content/` as the vault**, not the repo root — that keeps `node_modules` and the

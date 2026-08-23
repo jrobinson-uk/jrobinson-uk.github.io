@@ -43,9 +43,9 @@ read it in a gap between lessons and do something differently as a result. Every
 by pointing at the source material, so anyone who wants the underlying paper can go and get
 it.
 
-The two-page limit is the whole design. It forces the question "what would you actually
+==The two-page limit is the whole design. It forces the question "what would you actually
 change?" to the front, and it makes the thing readable in the time a teacher really has,
-which is not an afternoon.
+which is not an afternoon.==
 
 ## What I did myself
 
@@ -54,9 +54,9 @@ adapted for computing. I wrote the first few myself — the first was on cogniti
 theory.
 
 Then I stopped writing them and started commissioning them, drawing authors from the
-learning team, editing their drafts and signing them off before publication. That shift is
+learning team, editing their drafts and signing them off before publication. ==That shift is
 the part I'd point at: the format only counts for anything if it outlives the person who
-invented it.
+invented it.==
 
 ## Where it went
 

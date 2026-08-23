@@ -74,9 +74,9 @@ misunderstandings that vibe coding is famous for.
 
 The rest is knowing where I sit. I stay the designer and the decision maker, and the
 judgement that actually matters is when to let the agent run and decide things for itself,
-against when to make it stop and check. Get that wrong one way and you are typing
+against when to make it stop and check. ==Get that wrong one way and you are typing
 everything yourself. Get it wrong the other way and you are reviewing a large amount of
-confident, plausible work that nobody asked for.
+confident, plausible work that nobody asked for.==
 
 The failure I hit most often is the agent hallucinating success. It reports that the build
 works, that the thing is done, with complete confidence and no basis for it. Telling it
@@ -86,9 +86,9 @@ What works is evidence. A screenshot of what the screen actually shows, the data
 to have produced, the error it insists isn't there. Put the artefact in front of it and it
 corrects course.
 
-That is the real argument for working in stages. Being able to roll a change back matters,
+==That is the real argument for working in stages. Being able to roll a change back matters,
 but the bigger thing is being able to see what actually happened at each step — because
-once I can see it, I can show it.
+once I can see it, I can show it.==
 
 Moving fast with these tools is not the skill. Moving fast and catching the failures is
 the skill.

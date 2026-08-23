@@ -58,9 +58,9 @@ The recognition runs on the Pi itself — a pre-trained TensorFlow Lite model an
 file, no network call and no account. The camera classifies whatever is held up to it,
 and the program maps the label it gets back to an expression.
 
-Expression is the whole point of the mechanism. The same tube reads as neutral or
+==Expression is the whole point of the mechanism. The same tube reads as neutral or
 miserable depending on a few degrees of motor rotation, which is a cheap way to buy a lot
-of emotional range.
+of emotional range.==
 
 ![The face with its tube mouth held almost straight, giving a flat, neutral expression.](assets/img/lego-face-expr-neutral.jpg) ![The same face with the tube mouth pulled downwards into a frown.](assets/img/lego-face-expr-frown.jpg)
 
@@ -92,8 +92,8 @@ prototype to a colleague, who turned it into the published project.
 
 The two LEGO experts saw it first, and their feedback was specific: the
 camera mount, and the way I had attached the eyes. The bracket that holds the LED
-matrices was their suggestion. The eyebrows were theirs outright — the model gained a
-whole axis of expression because somebody else looked at it.
+matrices was their suggestion. ==The eyebrows were theirs outright — the model gained a
+whole axis of expression because somebody else looked at it.==
 
 After that, limited testing with colleagues and a couple of children. There
 was one kit, which caps how much testing you can do. It did not go through anything

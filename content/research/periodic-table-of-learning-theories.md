@@ -32,9 +32,9 @@ people: Claudia Szabo and Nickolas Falkner (Adelaide), Andrew Petersen (Toronto
 Mississauga), Heather Bort (Marquette), Cornelia Connolly (NUI Galway), Kathryn Cunningham
 (Michigan), Peter Donaldson (Glasgow), Arto Hellas (Helsinki) and Judy Sheard (Monash).
 
-I was the only author not at a university. That is the part worth noting: the collaboration
+I was the only author not at a university. ==That is the part worth noting: the collaboration
 put someone whose job is making classroom resources in the same room as people who study
-whether they work, which is the relationship the rest of this site keeps circling.
+whether they work, which is the relationship the rest of this site keeps circling.==
 
 ## What I did myself
 

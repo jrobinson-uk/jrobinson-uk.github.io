@@ -99,7 +99,7 @@ burnt out the transistor. Replacing it took them five to ten minutes.
 The honest doubt first: I am not certain I didn't swap one challenge for another. The
 soldering iron posed problems, and so does copper tape.
 
-The failures were all about contact, not logic. The first prototype blew its transistor
+==The failures were all about contact, not logic.== The first prototype blew its transistor
 because I applied too much current, and the fix was as much protective as it was
 electrical — a second resistor on the transistor input.
 
@@ -113,10 +113,10 @@ shields the middle pad from being bridged and presses the tracks down with raise
 
 The best fix wasn't mine. My son picked the circuit up, noticed that pressing it changed
 its behaviour, and suggested using a blunt pencil to run along the copper tape and seat
-it properly. Handling the object located the fault faster than reasoning about it did.
+it properly. ==Handling the object located the fault faster than reasoning about it did.==
 
-The paper version taught me something too. Being able to trace the pathways with a
-finger made the circuit legible in a way the 3D-printed one wasn't.
+The paper version taught me something too. ==Being able to trace the pathways with a
+finger made the circuit legible in a way the 3D-printed one wasn't.==
 
 ## Where it went
 

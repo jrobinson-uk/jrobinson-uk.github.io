@@ -42,9 +42,9 @@ three kinds of article: research-based pieces, pieces that sit between research 
 practice, and pieces written straight from the classroom. Some of it came from past issues
 of _Hello World_; the rest was commissioned for the book.
 
-That mix is the argument. A principle stated alone is a slogan. A principle with the
+==That mix is the argument. A principle stated alone is a slogan. A principle with the
 research behind it and a teacher's account of using it on a Tuesday is something you can
-act on.
+act on.==
 
 ## What I did myself
 

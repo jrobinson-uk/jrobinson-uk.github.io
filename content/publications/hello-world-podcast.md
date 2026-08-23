@@ -50,8 +50,8 @@ hosts: I present episodes and often record the introductions.
 The craft of it is a genuine skill and it's not the one people assume. Most presenters
 prefer a script. I work better off the cuff — thinking on my feet, keeping a conversation
 moving, and above all listening closely enough to hear the thing a guest has half-said and
-probe for the rest of it. A script protects you from silence but it stops you following
-what the guest actually just told you.
+probe for the rest of it. ==A script protects you from silence but it stops you following
+what the guest actually just told you.==
 
 ## Where it went
 
@@ -60,6 +60,6 @@ full-time editor and a product manager who plan the episodes and publish the con
 turn up to host. It has run to more than fifty episodes and is still going.
 
 That is the second time I've done this — build something small enough to prove, then hand it
-to people who can run it properly. [[picademy|Picademy]] was the first. I've come to think
+to people who can run it properly. [[picademy|Picademy]] was the first. ==I've come to think
 of it as the useful shape: the interesting part is establishing that a thing can work, and
-the responsible part is getting out of the way of whoever makes it sustainable.
+the responsible part is getting out of the way of whoever makes it sustainable.==
