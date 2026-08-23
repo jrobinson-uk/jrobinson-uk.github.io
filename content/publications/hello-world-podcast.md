@@ -34,8 +34,8 @@ First the Teach Computing podcast, under the National Centre for Computing Educa
 brand. Low budget and frankly scrappy, with a modest number of listeners. It was an
 experiment, and it was treated as one.
 
-Then a better version of the idea. With a colleague, Carrie Anne Philbin — whose idea I
-think it originally was, though we developed it together — we took the article content
+Then a better version of the idea. With a colleague — whose idea I think it originally
+was, though we developed it together — we took the article content
 already being written for _Hello World_ and turned it into a podcast series. Not a reading
 of the magazine, but a use of the same material with something added: the writers talking
 about the thing they had written, and being asked about it.

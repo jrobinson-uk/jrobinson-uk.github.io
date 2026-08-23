@@ -84,13 +84,13 @@ place and the right size.
 
 ![A Raspberry Pi Camera Module held in a pink 3D-printed bracket, its ribbon cable trailing away to one side.](assets/img/lego-face-camera-mount.jpg)
 
-Not all of it was mine. Two designers at LEGO Education reviewed the build and changed
+Not all of it was mine. Two LEGO experts reviewed the build and changed
 two of its mechanisms, and the eyebrows were their idea rather than mine. I then handed the
 prototype to a colleague, who turned it into the published project.
 
 ## How it was tested
 
-The two LEGO Education designers saw it first, and their feedback was specific: the
+The two LEGO experts saw it first, and their feedback was specific: the
 camera mount, and the way I had attached the eyes. The bracket that holds the LED
 matrices was their suggestion. The eyebrows were theirs outright — the model gained a
 whole axis of expression because somebody else looked at it.
@@ -104,7 +104,7 @@ rigorous and I would not claim otherwise.
 The camera bracket is the part I remain dissatisfied with. Making the Pi camera fit meant
 3D printing an extra component, which is an extra step for everyone who ever builds this,
 and a step that needs a printer to complete. That is why I took the mounting problem to
-LEGO rather than solving it again myself — I wanted the answer to be parts people already
+the LEGO experts rather than solving it again myself — I wanted the answer to be parts people already
 had, not another thing to fabricate.
 
 Building against a product that had not shipped yet was the other lesson. The Build HAT
