@@ -46,6 +46,13 @@ A **literature search tool** that runs inside Google Sheets. Give it terms and i
 searches, then chases citations outward — snowball sampling — assembling what it finds
 into a spreadsheet you can actually work in. The Apps Script behind it was agent-written.
 
+![The literature search tool running as a sidebar in Google Sheets. On the left, a results sheet with columns for Depth, Crawled, Year, Title, Authors and Type, filled with published papers on generative AI in computing education. On the right, a panel headed Citation Crawl sets out the pipeline — a venue sweep, then a keyword pass, then backward and forward citation passes, then a final sweep to retry missing abstracts — each stage writing to its own sheet. Below that, two hand-picked seed papers and a field for pasting a resume code.](assets/img/agentic-literature-search.png)
+
+The run is staged rather than monolithic, and each stage writes to its own sheet with a
+resume code, so a crawl that dies halfway can be picked up instead of restarted. ==That is
+the same instinct as working in small commits: not the speed, but being able to see where
+you are.==
+
 A **CEFR vocabulary analyser** that reads definition text and flags any word above a
 target language level, so glossary entries can be checked against a readability standard
 rather than against a hunch. It reports the proportion of words within level, the ones
