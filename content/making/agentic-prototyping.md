@@ -64,7 +64,7 @@ time. The agent built the tool; the tool is deterministic. For something whose j
 judge whether learning material is readable, "the same input gives the same answer" is a
 requirement rather than a nicety, and that was a decision, not an accident.
 
-The rest isn't mine to show — small tools that sit alongside software a team already uses,
+The rest isn't mine to show, small tools that sit alongside software a team already uses,
 prototypes exploring how these models might work inside products, and an authoring
 pipeline that replaces a manual InDesign process with a text-based one: typesetting as
 source, history in Git, several tools in a single workflow.
