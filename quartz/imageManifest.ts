@@ -8,6 +8,8 @@ export type ManifestEntry = {
   animated: boolean
   still: Record<string, Derivative[]>
   anim: { src: string; w: number; frames: number; sourceFrames: number; bytes: number } | null
+  /** Present only for animated sources, and only when ffmpeg was available. */
+  video: { src: string; w: number; frames: number; bytes: number } | null
 }
 
 /**

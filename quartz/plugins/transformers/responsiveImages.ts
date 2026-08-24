@@ -12,6 +12,14 @@ import { lookup, srcsetOf } from "../../imageManifest"
  * through the manifest via ProjectTile; this does the same for body images so both
  * routes behave alike.
  *
+ * An animated source becomes a `<video>` rather than a `<picture>`, because video
+ * compression carries every frame of the clip for a fraction of what an animated WebP
+ * costs at a fifth of the frames. It is emitted without `autoplay`: the poster is the
+ * still first frame, nothing moves until the visitor presses play, and with
+ * `preload="none"` not a byte of the video is fetched until they do. That makes
+ * `prefers-reduced-motion` correct by construction rather than by media query, and it
+ * satisfies WCAG 2.2.2 — the animation is pausable because it was never running.
+ *
  * An image with no manifest entry is left exactly as it was, so an image dropped in
  * before the pipeline has run still renders.
  */
@@ -47,9 +55,41 @@ export const ResponsiveImages: QuartzTransformerPlugin = () => {
               const fallback = jpeg[jpeg.length - 1]?.src
               if (!fallback) return
 
+              // The alt text the author wrote describes the motion, so it becomes the
+              // video's accessible label rather than being thrown away.
+              const alt = typeof node.properties?.alt === "string" ? node.properties.alt : ""
+
+              if (entry.video) {
+                // `poster` takes a single URL with no <source> fallback, so it has to be
+                // a format everything reads. WebP has been safe since Safari 14 and is
+                // a quarter smaller than the JPEG here; AVIF still isn't.
+                const webp = entry.still.webp ?? []
+                const posterSrc = webp[webp.length - 1]?.src ?? fallback
+                parent.children[index] = {
+                  type: "element",
+                  tagName: "video",
+                  properties: {
+                    src: entry.video.src,
+                    poster: posterSrc,
+                    controls: true,
+                    loop: true,
+                    muted: true,
+                    playsInline: true,
+                    preload: "none",
+                    width: entry.width ?? undefined,
+                    height: entry.height ?? undefined,
+                    "aria-label": alt || undefined,
+                    style: entry.width ? `max-width:${entry.width}px` : undefined,
+                  },
+                  children: [{ type: "text", value: alt }],
+                } as Element
+                return
+              }
+
               const sources: Element[] = []
               if (entry.anim) {
-                // A still for anyone who asked for less motion, then the animation.
+                // No ffmpeg, so fall back to the animated WebP: a still for anyone who
+                // asked for less motion, then the animation.
                 const still = source(
                   "image/webp",
                   srcsetOf(entry.still.webp),

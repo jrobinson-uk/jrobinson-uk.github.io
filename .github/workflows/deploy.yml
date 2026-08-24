@@ -30,8 +30,13 @@ jobs:
 
       - run: npm ci
 
-      # Generates responsive stills and animated WebP, then builds. Fails the build
-      # on any image without alt text.
+      # scripts/prepare-images.mjs encodes animated sources to H.264 with ffmpeg. It
+      # degrades to an animated WebP without it, which would quietly make the deployed
+      # site worse than a local build, so install it rather than rely on the fallback.
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+
+      # Generates responsive stills, videos and animated WebP, then builds. Fails the
+      # build on any image without alt text.
       - run: npm run build
 
       - uses: actions/configure-pages@v5.0.0

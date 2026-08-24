@@ -69,6 +69,8 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       // Fails the build on any image without meaningful alt text.
+      // Must run before ResponsiveImages: that turns animated images into <video>
+      // elements, and this only inspects <img>.
       RequireAltText(),
       // Rewrites body images to responsive <picture> using the generated derivatives.
       ResponsiveImages(),

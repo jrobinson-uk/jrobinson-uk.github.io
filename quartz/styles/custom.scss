@@ -134,10 +134,19 @@ article {
 
 // Images may break wider than the text column.
 article img,
-article picture {
+article picture,
+article video {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+// A video carries controls, so it reads as a thing you operate rather than a picture
+// that happens to move. The border makes that legible before it is pressed.
+article video {
+  border: 1px solid var(--lightgray);
+  border-radius: 4px;
+  background: var(--light);
 }
 
 // ---- links ----

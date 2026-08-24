@@ -64,8 +64,8 @@ of emotional range.==
 
 ![The face with its tube mouth held almost straight, giving a flat, neutral expression.](assets/img/lego-face-expr-neutral.jpg) ![The same face with the tube mouth pulled downwards into a frown.](assets/img/lego-face-expr-frown.jpg)
 
-Still photographs undersell it, so here it is moving — the eyes redrawing themselves on
-the matrices while the mouth travels between expressions.
+Still photographs undersell it, so press play — the eyes redraw themselves on the
+matrices while the mouth travels between expressions.
 
 ![The robot face animating: the LED matrix eyes change pattern while the tube mouth moves between a smile and a frown.](assets/img/robot_face.gif)
 

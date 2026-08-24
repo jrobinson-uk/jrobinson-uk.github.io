@@ -129,19 +129,28 @@ project can be written before its photograph is taken.
 
 ### Animated GIFs
 
-Animated GIFs work as tile previews. Each one becomes:
+An animated GIF in the body of a note becomes an **H.264 MP4** with every frame of the
+source, rendered as a `<video>` with controls, a poster and **no autoplay**.
 
-- an **animated WebP**, encoded to a ~900 KB budget by dropping frames rather than
-  wrecking quality, with frame delays scaled so it still runs at the original speed;
-- a **still first frame**, served to anyone whose system asks for reduced motion.
+That is deliberate on three counts. Video compression is built for this job, so the
+whole clip costs a fraction of an animation format — the 7.7 MB `robot_face.gif` is
+167 KB as MP4 with all 160 frames, against 499 KB as WebP with 20 of them. Nothing
+moves until the visitor presses play, which is what `prefers-reduced-motion` is asking
+for and what WCAG 2.2.2 requires, without needing a media query to arrange it. And
+`preload="none"` means not a byte of the video is fetched unless it's wanted, so a page
+carrying one is no heavier to load than a page of stills.
 
-That last part is why animation goes through WebP rather than shipping the GIF: a GIF
-animates unconditionally and can't be opted out of. A `<source media="(prefers-reduced-motion: reduce)">`
-can.
+This needs **ffmpeg**: `brew install ffmpeg` locally, and the deploy workflow installs
+it. Without it the build still works — it falls back to an **animated WebP** encoded to
+a byte budget by dropping frames, with a still served under
+`(prefers-reduced-motion: reduce)` — and says so in the build log:
 
-The 7.7 MB `robot_face.gif` comes out at 670 KB, 27 of its 160 frames. If a GIF can't
-be squeezed under budget even at maximum frame-dropping, the build warns and tells you
-to use a shorter clip.
+```
+robot_face.gif  323×325  video: skipped, ffmpeg not installed  webp: 20/160 frames, 0.49 MB
+```
+
+Install ffmpeg afterwards and the next build picks it up; it doesn't need the source
+image to change first.
 
 Images are never displayed larger than their intrinsic size, so a small source looks
 small rather than blurry.
@@ -232,6 +241,7 @@ Quartz's defaults are built for a note garden. These are the deviations:
 | `quartz/components/PortfolioNav.tsx` | The header |
 | `quartz/components/PortfolioFooter.tsx` | Footer (the stock one fails WCAG AA on contrast) |
 | `quartz/plugins/transformers/requireAltText.ts` | Alt-text enforcement |
+| `quartz/plugins/transformers/responsiveImages.ts` | Body images → `<picture>`, animations → `<video>` |
 | `quartz/styles/custom.scss` | Single column, no side rails |
 | `scripts/prepare-images.mjs` | The image pipeline Quartz doesn't have |
 
