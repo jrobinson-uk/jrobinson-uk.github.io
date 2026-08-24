@@ -26,6 +26,10 @@ links:
     url: /assets/files/not-gate.stl
   - label: "3D print files: the baseplate (STL)"
     url: /assets/files/not-gate-baseplate.stl
+  - label: "Editable source: the gate (OBJ)"
+    url: /assets/files/not-gate-obj.zip
+  - label: "Editable source: the baseplate (OBJ)"
+    url: /assets/files/not-gate-baseplate-obj.zip
 hero:
   src: not-gate-final.jpg
   alt: The final 3D-printed NOT gate, shaped like the logic gate symbol, with copper tape in moulded channels, two resistors, a transistor and a green LED in place.
@@ -122,7 +126,12 @@ finger made the circuit legible in a way the 3D-printed one wasn't.==
 
 The print files are here: the [gate](/assets/files/not-gate.stl) at 3mm, and the
 [baseplate](/assets/files/not-gate-baseplate.stl) it clips into. Both are yours to print.
-I still intend to work out equivalents for the other logic gates.
+
+Both are also up as OBJ — [gate](/assets/files/not-gate-obj.zip),
+[baseplate](/assets/files/not-gate-baseplate-obj.zip) — which is the format to take if you
+want to change the model rather than print it. That matters more than the STLs do, because
+I still intend to work out equivalents for the other logic gates and I would rather
+somebody beat me to it than wait.
 
 The 3D design is also exported as a flat SVG, printable at the right scale, so the same
 circuit can be built on paper. That drops the resource requirement again — no printer,
