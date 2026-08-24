@@ -28,9 +28,8 @@ or a teacher can see what applies where?
 ## What I made
 
 A contribution to a short paper in the ITiCSE 2019 proceedings, written with nine other
-people: Claudia Szabo and Nickolas Falkner (Adelaide), Andrew Petersen (Toronto
-Mississauga), Heather Bort (Marquette), Cornelia Connolly (NUI Galway), Kathryn Cunningham
-(Michigan), Peter Donaldson (Glasgow), Arto Hellas (Helsinki) and Judy Sheard (Monash).
+people across six countries — researchers in Australia, Canada, Finland, Ireland, the UK
+and the United States.
 
 I was the only author not at a university. ==That is the part worth noting: the collaboration
 put someone whose job is making classroom resources in the same room as people who study
