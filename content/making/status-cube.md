@@ -18,6 +18,9 @@ tools:
   - MicroPython
   - 3D printing
   - Slack API
+hero:
+  src: status-cube-enclosure.jpg
+  alt: A matte green 3D-printed cube on a white desk next to a keyboard, its faces labelled by hand in black marker — "online" on the top face, "Focus" and "Lunch" on the two visible sides. Print layer lines run across every surface.
 ---
 
 ## The question
@@ -61,6 +64,10 @@ face is down, call Slack, watch the status change. Then a mount designed to sit 
 handled while still being visible. Then a full enclosure printed. Most recently, connection
 insets tested for a pogo pin cable, so the cube can sit on a dock to charge and talk to a
 computer.
+
+![A Raspberry Pi Pico W on a tall black header sitting in a green 3D-printed mount, with a small blue charging board tucked underneath it, the whole assembly resting in a shallow printed tray.](assets/img/status-cube-mount.jpg)
+
+![Two green 3D-printed pogo pin insets on a white desk. The left one shows four gold pogo pins flanked by two metal magnets; the right one has a matching connector with a four-core cable running from it, its red, white, yellow and black wires stripped bare at the far end.](assets/img/status-cube-pogo-insets.jpg)
 
 The pogo pins are the same argument as the shake gesture. A socket is a hole, and I wanted
 the case sealed. Contacts on the outside keep it that way, and the cube gets picked up and
