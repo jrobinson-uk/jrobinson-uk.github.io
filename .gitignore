@@ -15,6 +15,8 @@ quartz/.quartz-cache/
 content/assets/derived/
 
 # Planning documents and working notes: kept locally, deliberately not published.
+# NOTES.md no longer exists — the README now covers how the site works, and its open
+# questions are closed. The rule stays, so that recreating the file can't publish it.
 portfolio-site-plan.md
 claude-code-build-brief.md
 NOTES.md

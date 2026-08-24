@@ -4,11 +4,10 @@ A static site built with [Quartz](https://quartz.jzhao.xyz/) v4, authored in Obs
 Content is Markdown in `content/`, organised into category folders. Deployed to GitHub
 Pages on every push to `main`.
 
-Three working documents sit alongside this repo but are deliberately not committed to
-it, since it's public: `portfolio-site-plan.md` (content and editorial decisions),
-`claude-code-build-brief.md` (original build brief) and `NOTES.md` (open questions and
-assets still needed). They're in `.gitignore`. A fresh clone won't have them — copy
-them across manually.
+Two working documents sit alongside this repo but are deliberately not committed to it,
+since it's public: `portfolio-site-plan.md` (content and editorial decisions) and
+`claude-code-build-brief.md` (original build brief). They're in `.gitignore`. A fresh
+clone won't have them — copy them across manually.
 
 ## Running it
 
