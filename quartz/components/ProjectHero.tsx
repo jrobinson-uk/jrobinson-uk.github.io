@@ -75,6 +75,11 @@ const ProjectHero: QuartzComponent = ({ fileData }: QuartzComponentProps) => {
       {hero.src && (
         <div class="project-hero-media">
           <PreviewImage hero={hero} sizes="(min-width: 60rem) 58rem, 100vw" eager />
+          {hero.credit && (
+            <p class="project-hero-credit">
+              {hero.creditUrl ? <a href={hero.creditUrl}>{hero.credit}</a> : hero.credit}
+            </p>
+          )}
         </div>
       )}
     </div>
@@ -104,6 +109,11 @@ ProjectHero.css = `
 }
 .project-hero-media picture { display: block; }
 .project-hero-media img { display: block; width: 100%; max-width: 100%; height: auto; }
+.project-hero-credit {
+  margin: 0.5rem 0 0;
+  color: var(--gray);
+  font-size: 0.8125rem;
+}
 `
 
 export default (() => ProjectHero) satisfies QuartzComponentConstructor

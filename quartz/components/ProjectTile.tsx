@@ -3,7 +3,16 @@ import { QuartzPluginData } from "../plugins/vfile"
 import { FullSlug, resolveRelative } from "../util/path"
 import { lookup, srcsetOf } from "../imageManifest"
 
-export type Hero = { src?: string; alt?: string }
+export type Hero = {
+  src?: string
+  alt?: string
+  /**
+   * Who took the photograph, when that isn't James. Most images here are of his own
+   * work and need no credit; a photograph *of* him at someone else's event does.
+   */
+  credit?: string
+  creditUrl?: string
+}
 
 export function heroOf(data: QuartzPluginData): Hero {
   return (data.frontmatter?.hero as Hero | undefined) ?? {}

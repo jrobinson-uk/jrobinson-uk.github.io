@@ -96,6 +96,21 @@ hero:
 ---
 ```
 
+If a hero photograph isn't yours, credit it:
+
+```yaml
+hero:
+  src: picademy-session.jpg
+  alt: "..."
+  credit: "Photograph: Raspberry Pi Foundation"
+  creditUrl: https://www.raspberrypi.org/blog/picademy-expands-in-the-united-states/
+```
+
+Most images here are of James's own work and need no credit. A photograph *of* him at
+someone else's event does, and `creditUrl` should point at where it was published so the
+claim is checkable. Note the quotes — a `credit` containing a colon is not valid YAML
+without them.
+
 `featured` is the switch for the landing page. Flip it to change the shop window
 without moving or rewriting anything — different projects at different times.
 

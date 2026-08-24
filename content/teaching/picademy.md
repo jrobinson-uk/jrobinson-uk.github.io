@@ -10,8 +10,10 @@ tags:
   - educators
 tools: []
 hero:
-  src: picademy-participant-builds.jpg
-  alt: Educators at a Picademy session holding up the physical computing projects they built themselves.
+  src: picademy-session.jpg
+  alt: "Four adults around a classroom desk at a Picademy session: three wearing Picademy lanyards, and an educator in a Raspberry Pi t-shirt standing over them mid-explanation with a pen raised. The desk carries a monitor, keyboards, jumper wires and Raspberry Pi boxes, and a chalkboard behind advertises a participant's project, The Digital Jukebox Piano."
+  credit: "Photograph: Raspberry Pi Foundation"
+  creditUrl: https://www.raspberrypi.org/blog/picademy-expands-in-the-united-states/
 ---
 
 ## What I made
