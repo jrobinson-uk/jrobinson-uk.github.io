@@ -18,6 +18,9 @@ tools:
   - MicroPython
   - 3D printing
   - Slack API
+links:
+  - label: Source on GitHub
+    url: https://github.com/jrobinson-uk/Status_cube
 hero:
   src: status-cube-enclosure.jpg
   alt: A matte green 3D-printed cube on a white desk next to a keyboard, its faces labelled by hand in black marker — "online" on the top face, "Focus" and "Lunch" on the two visible sides. Print layer lines run across every surface.
@@ -84,3 +87,8 @@ config file rather than something I will rediscover in a year.
 It isn't finished. The status light is still the Pico's onboard LED blinking twice to
 acknowledge a roll, with a note in the code to replace it once the RGB indicator is
 wired in.
+
+The [source is on GitHub](https://github.com/jrobinson-uk/Status_cube). Every threshold
+described above is a named constant in `config.example.py` rather than a number buried in
+the logic, which is the same instinct as the comment about the I²C clock: the next person
+to pick this up shouldn't have to rediscover what I already found out.
