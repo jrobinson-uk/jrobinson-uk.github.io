@@ -5,6 +5,8 @@ import { googleFontHref, googleFontSubsetHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { unescapeHTML } from "../util/escape"
 import { CustomOgImagesEmitterName } from "../plugins/emitters/ogImage"
+import { lookup } from "../imageManifest"
+import { Hero } from "./ProjectTile"
 export default (() => {
   const Head: QuartzComponent = ({
     cfg,
@@ -15,9 +17,16 @@ export default (() => {
     const titleSuffix = cfg.pageTitleSuffix ?? ""
     const title =
       (fileData.frontmatter?.title ?? i18n(cfg.locale).propertyDefaults.title) + titleSuffix
+    // Every entry already carries a hand-written one-line `summary`, which is exactly
+    // what a share card wants. Without this, Quartz falls through to its own extract of
+    // the body — which begins at the first heading, so a link pasted into Slack read
+    // "The question Could the Build HAT support a project where...".
     const description =
       fileData.frontmatter?.socialDescription ??
       fileData.frontmatter?.description ??
+      (typeof fileData.frontmatter?.summary === "string"
+        ? fileData.frontmatter.summary
+        : undefined) ??
       unescapeHTML(fileData.description?.trim() ?? i18n(cfg.locale).propertyDefaults.description)
 
     const { css, js, additionalHead } = externalResources
@@ -35,6 +44,20 @@ export default (() => {
       (e) => e.name === CustomOgImagesEmitterName,
     )
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
+
+    // Prefer the entry's own hero photograph over the site-wide card. On a site whose
+    // job is to show artefacts, sharing the same generic image for every project throws
+    // away the strongest thing each page has. 1200px is the widest derivative that
+    // still sits inside the 5MB most platforms will fetch.
+    const hero = fileData.frontmatter?.hero as Hero | undefined
+    const heroEntry = lookup(hero?.src)
+    const heroDerivative =
+      heroEntry?.still.jpeg?.slice().reverse().find((d) => d.w <= 1200) ??
+      heroEntry?.still.jpeg?.[heroEntry.still.jpeg.length - 1]
+    const ogImagePath = heroDerivative
+      ? `https://${cfg.baseUrl}${heroDerivative.src}`
+      : ogImageDefaultPath
+    const ogImageAlt = heroDerivative && hero?.alt ? hero.alt : description
 
     return (
       <head>
@@ -60,17 +83,30 @@ export default (() => {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta property="og:description" content={description} />
-        <meta property="og:image:alt" content={description} />
+        <meta property="og:image:alt" content={ogImageAlt} />
 
         {!usesCustomOgImage && (
           <>
-            <meta property="og:image" content={ogImageDefaultPath} />
-            <meta property="og:image:url" content={ogImageDefaultPath} />
-            <meta name="twitter:image" content={ogImageDefaultPath} />
+            <meta property="og:image" content={ogImagePath} />
+            <meta property="og:image:url" content={ogImagePath} />
+            <meta name="twitter:image" content={ogImagePath} />
             <meta
               property="og:image:type"
-              content={`image/${getFileExtension(ogImageDefaultPath) ?? "png"}`}
+              content={`image/${getFileExtension(ogImagePath) ?? "png"}`}
             />
+            {heroDerivative && (
+              <>
+                <meta property="og:image:width" content={String(heroDerivative.w)} />
+                {heroEntry?.width && heroEntry?.height && (
+                  <meta
+                    property="og:image:height"
+                    content={String(
+                      Math.round((heroDerivative.w * heroEntry.height) / heroEntry.width),
+                    )}
+                  />
+                )}
+              </>
+            )}
           </>
         )}
 

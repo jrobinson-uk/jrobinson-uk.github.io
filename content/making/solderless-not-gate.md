@@ -60,12 +60,12 @@ I am comfortable building circuits but not experienced at designing them, so thi
 with research into how few components a NOT gate could need, and a diagram worked out on
 whatever was to hand.
 
-![A circuit diagram drawn by hand in biro on a green sticky note, labelled GND along the top, IN on the left, +ve at the bottom and OUT on the right, with a transistor and a resistor sketched between them.](assets/img/not-gate-00-diagram.jpg)
+![Seven photographs of the same logic gate at different stages, numbered one to seven. One: a circuit diagram in biro on a green sticky note, labelled GND, IN, OUT and +ve. Two: bare wires and alligator clips spread across a carpet with a green LED lit. Three: a copper tape circuit taped to lined paper, hand-labelled OUT, with the LED lit brightly. Four: a 3D-printed yellow gate with "V2 dead" written across it in marker pen. Five: a printed template with copper pads, two blue resistors and a transistor pushed into moulded holes. Six: the refined template printed at 3mm and bare, with channels moulded to guide the tape. Seven: the finished gate with copper tape, components and a lit green LED in place.](assets/img/not-gate-lineup.jpg)
 
-![The first working circuit: bare wires, alligator clips and copper tape spread across a carpet next to a breadboard and a hand-drawn circuit diagram, with a green LED lit.](assets/img/not-gate-01-bare-wires.jpg) ![A copper tape circuit taped to a sheet of lined paper, labelled IN and OUT by hand, with two resistors, a transistor and a green LED lit brightly.](assets/img/not-gate-02-paper.jpg) ![A 3D-printed yellow triangular template with square copper tape pads, two blue resistors and a black transistor pushed into moulded holes.](assets/img/not-gate-03-template.jpg) ![The final template printed at 3mm thick and bare, with channels moulded to guide the copper tape.](assets/img/not-gate-04-final-print.jpg)
-
-The route there: bare wires and copper tape on the carpet, then a copper tape circuit on
-paper to prove the concept, then the printed template, then a refined version of it.
+Seven versions, in order: the diagram on a sticky note; bare wires and alligator clips on
+the carpet; copper tape on lined paper to prove the concept; the print whose transistor I
+blew, labelled accordingly; the template that replaced it; that template refined and
+printed bare at 3mm; and the finished gate.
 
 ## What I did myself
 
@@ -106,8 +106,6 @@ soldering iron posed problems, and so does copper tape.
 ==The failures were all about contact, not logic.== The first prototype blew its transistor
 because I applied too much current, and the fix was as much protective as it was
 electrical — a second resistor on the transistor input.
-
-![A 3D-printed gate with "V2 dead" written across it in marker pen, a single resistor, a transistor and a green LED still fitted, lying on a wooden table.](assets/img/not-gate-v2-dead.jpg)
 
 After that, every problem was a
 person's ability to press tape onto a surface that gave them no help. So the changes

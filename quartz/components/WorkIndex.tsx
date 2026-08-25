@@ -1,18 +1,22 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import { allEntries, populatedCategories, entriesIn, tagIndex } from "../portfolio"
+import { curatedEntries, populatedCategories, tagIndex } from "../portfolio"
 import { ProjectTile, tileStyles } from "./ProjectTile"
 import { resolveRelative, FullSlug } from "../util/path"
 
 /**
- * The archive: every entry once, newest first, with the categories offered as
- * filters above it.
+ * The archive: every entry once, making first, with the categories offered as links
+ * above it.
  *
- * Entries can belong to more than one category now, so grouping this page by
- * category would list the same entry several times. One canonical chronological
- * list plus separate category pages avoids that, and is the shape a blog takes.
+ * Entries can belong to more than one category, so grouping this page by category
+ * would list the same entry several times. One flat list ordered by
+ * `curatedEntries` avoids that, while still leading with the making — see the note
+ * there for why date order is the wrong order here.
+ *
+ * The category links deliberately carry no counts. They were a tally of how much of
+ * the site is not making, which is the first thing a reader saw.
  */
 const WorkIndex: QuartzComponent = ({ allFiles, fileData }: QuartzComponentProps) => {
-  const entries = allEntries(allFiles)
+  const entries = curatedEntries(allFiles)
   if (entries.length === 0) return null
 
   const categories = populatedCategories(allFiles)
@@ -27,14 +31,12 @@ const WorkIndex: QuartzComponent = ({ allFiles, fileData }: QuartzComponentProps
               <li key={category.slug}>
                 <a href={resolveRelative(fileData.slug!, `${category.slug}/index` as FullSlug)}>
                   {category.label}
-                </a>{" "}
-                <span class="filter-count">{entriesIn(allFiles, category.slug).length}</span>
+                </a>
               </li>
             ))}
             {tags.length > 0 && (
               <li key="all-topics">
-                <a href={resolveRelative(fileData.slug!, "tags/index" as FullSlug)}>All topics</a>{" "}
-                <span class="filter-count">{tags.length}</span>
+                <a href={resolveRelative(fileData.slug!, "tags/index" as FullSlug)}>All topics</a>
               </li>
             )}
           </ul>

@@ -97,6 +97,35 @@ export function allEntries(allFiles: QuartzPluginData[]): QuartzPluginData[] {
   return allFiles.filter(isEntry).sort(byYearThenOrder)
 }
 
+/** Rank of an entry's first declared category, using CATEGORIES as the order. */
+function categoryRank(page: QuartzPluginData): number {
+  const primary = categoriesOf(page)[0]
+  const i = CATEGORY_SLUGS.indexOf(primary)
+  return i === -1 ? CATEGORY_SLUGS.length : i
+}
+
+/**
+ * The order for the archive, which is a different job from a blog's reverse
+ * chronology.
+ *
+ * Sorted by date, this reads as "strong physical making years ago, then a move into
+ * writing and tooling" — which is the opposite of the argument the work makes. So the
+ * archive leads with making (the first entry in CATEGORIES), newest first inside each
+ * category, and `order` pins an entry above its natural position when the best thing
+ * to show is not the most recent thing.
+ */
+export function curatedEntries(allFiles: QuartzPluginData[]): QuartzPluginData[] {
+  return allFiles
+    .filter(isEntry)
+    .sort(
+      (a, b) =>
+        orderOf(a) - orderOf(b) ||
+        categoryRank(a) - categoryRank(b) ||
+        yearOf(b) - yearOf(a) ||
+        String(a.frontmatter?.title ?? "").localeCompare(String(b.frontmatter?.title ?? "")),
+    )
+}
+
 export function entriesIn(allFiles: QuartzPluginData[], category: string): QuartzPluginData[] {
   return allEntries(allFiles).filter((p) => categoriesOf(p).includes(category))
 }
@@ -111,7 +140,9 @@ export function entriesTagged(allFiles: QuartzPluginData[], tag: string): Quartz
  * moving or rewriting anything.
  */
 export function featuredEntries(allFiles: QuartzPluginData[]): QuartzPluginData[] {
-  return allEntries(allFiles).filter((p) => p.frontmatter?.featured === true)
+  // Curated order, not date order: the landing page is the one place where showing the
+  // best thing first matters more than showing the newest thing first.
+  return curatedEntries(allFiles).filter((p) => p.frontmatter?.featured === true)
 }
 
 /** Categories that currently contain at least one entry. */

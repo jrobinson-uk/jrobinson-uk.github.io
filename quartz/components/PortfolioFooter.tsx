@@ -1,5 +1,4 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import { version } from "../../package.json"
 
 interface Options {
   /** Optional external links, e.g. GitHub. Rendered only if provided. */
@@ -10,9 +9,13 @@ interface Options {
  * Replaces Quartz's default footer.
  *
  * Two reasons: the stock one puts its own version number and a link at contrast
- * ratios that fail WCAG AA (3.6:1 and 3.94:1 measured), and this site's footer
- * should be the name rather than the toolchain. The Quartz credit stays — it's a
- * courtesy, and Quartz is MIT — but at a contrast that passes.
+ * ratios that fail WCAG AA (3.6:1 and 3.94:1 measured), and this site's footer should
+ * be the name rather than the toolchain.
+ *
+ * No generator credit. Quartz is MIT, which asks that the licence travel with the
+ * software — not that every rendered page announce the toolchain to a reader who came
+ * to look at the work. The dependency is declared in package.json and the engine
+ * source is in this repo.
  */
 export default ((opts?: Options) => {
   const PortfolioFooter: QuartzComponent = ({ cfg }: QuartzComponentProps) => {
@@ -29,9 +32,6 @@ export default ((opts?: Options) => {
             ))}
           </ul>
         )}
-        <p class="footer-credit">
-          Built with <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a>
-        </p>
       </footer>
     )
   }
@@ -44,7 +44,6 @@ footer {
   font-size: 0.9375rem;
 }
 footer .footer-name { margin: 0 0 0.3em; color: var(--darkgray); }
-footer .footer-credit { margin: 0.75rem 0 0; color: var(--darkgray); font-size: 0.8125rem; }
 footer ul {
   display: flex;
   flex-wrap: wrap;

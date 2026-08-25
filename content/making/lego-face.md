@@ -2,6 +2,7 @@
 title: LEGO Face
 summary: A robot face built from LEGO that recognises objects with a Raspberry Pi camera and answers with an expression.
 year: 2020
+order: 1   # pinned to the top of /work
 draft: false
 featured: true
 categories:

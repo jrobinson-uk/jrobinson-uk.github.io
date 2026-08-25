@@ -3,7 +3,7 @@ title: "Sense HAT: finding out what a new product is for"
 summary: A new sensor board arrived with no established use. Several cheap prototypes to find out what it was good for.
 year: 2015
 draft: false
-featured: false
+featured: true
 categories:
   - making
   - publications

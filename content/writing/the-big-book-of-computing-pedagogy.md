@@ -3,7 +3,7 @@ title: The Big Book of Computing Pedagogy
 summary: A chapter for each of twelve principles of computing pedagogy, and the thing teachers actually kept on the shelf.
 year: 2021
 draft: false
-featured: true
+featured: false
 categories:
   - publications
   - writing
