@@ -1,11 +1,12 @@
 ---
 title: Research and pedagogy
-summary: The layer underneath the making — how I know whether any of it worked.
+summary: Constructionism with the pure discovery taken out — where I stand on making and play, and what it means for what I build.
 year: "2025–present"
 draft: false
 categories:
   - research
 tags:
+  - constructionism
   - pedagogy
   - msc
   - debugging
@@ -30,10 +31,27 @@ about play, making and creativity meet in the classroom.
 A dissertation on the affective, embodied and symbolic knowledge learners bring to bear
 when debugging physical computing projects.
 
-Also the working definitions I use, which are borrowed and then adjusted. Making, after
-Martin, but with the product-focused outcome taken out and expression admitted as a
+## Where I stand
+
+Constructionism, with the pure discovery taken out.
+
+It is the foundation of how I came to understand technology myself — what it is for, where
+it meets other disciplines, why any of it matters. ==Building a thing is still how I learn
+one, which is why this site is mostly artefacts.==
+
+As a way for learners to explore, I think it is close to ideal. As a method you can rely
+on, it is not. Handing learners the resources and expecting the learning to follow does not
+work reliably, in all circumstances, with every learner. What they need is agency **and**
+structure — a real say in what they make and how they make it, with enough scaffolding that
+the making holds up.
+
+So I sit close to constructionism without the open-ended, discovery-only version of it —
+==a reading I suspect is commoner among Papert's readers than it was in Papert himself.==
+
+Two working definitions come out of that, both borrowed and then adjusted. **Making**,
+after Martin, but with the product-focused outcome taken out and expression admitted as a
 legitimate end — you can make something in order to say something, and it still counts.
-Play as a pedagogical device that produces motivation through agency, characterised by
+**Play** as a pedagogical device that produces motivation through agency, characterised by
 purposeful playfulness rather than easy fun.
 
 ## What I did myself
@@ -64,7 +82,10 @@ when it would be faster to reach over and fix it. And a critical, pragmatic posi
 the cost of making, which includes the option of not making at all when the environmental
 cost outweighs what anybody would learn.
 
-None of this is a parallel academic interest. It is how I know whether something worked.
+None of this is a parallel academic interest. ==It is the account of why making teaches
+anything at all, and it is also how I know whether a particular thing worked. The second
+is no use without the first: you cannot tell whether an activity succeeded until you have
+said what it was supposed to be doing.==
 
 It also has a fast version, and the fast version is the one I use most: watching three
 children for twenty minutes and changing the thing that afternoon.
