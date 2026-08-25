@@ -49,15 +49,21 @@ export default (() => {
     // job is to show artefacts, sharing the same generic image for every project throws
     // away the strongest thing each page has. 1200px is the widest derivative that
     // still sits inside the 5MB most platforms will fetch.
+    // A hero is chosen to sit at the top of a page; a share card is cropped to roughly
+    // 1.91:1 by every platform that renders one. Those wants differ, so `ogImage` lets
+    // an entry nominate a landscape image for sharing without changing the page.
     const hero = fileData.frontmatter?.hero as Hero | undefined
-    const heroEntry = lookup(hero?.src)
+    const ogImageOverride =
+      typeof fileData.frontmatter?.ogImage === "string" ? fileData.frontmatter.ogImage : undefined
+    const heroEntry = lookup(ogImageOverride ?? hero?.src)
     const heroDerivative =
       heroEntry?.still.jpeg?.slice().reverse().find((d) => d.w <= 1200) ??
       heroEntry?.still.jpeg?.[heroEntry.still.jpeg.length - 1]
     const ogImagePath = heroDerivative
       ? `https://${cfg.baseUrl}${heroDerivative.src}`
       : ogImageDefaultPath
-    const ogImageAlt = heroDerivative && hero?.alt ? hero.alt : description
+    const ogImageAlt =
+      heroDerivative && !ogImageOverride && hero?.alt ? hero.alt : description
 
     return (
       <head>

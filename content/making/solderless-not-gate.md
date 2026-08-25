@@ -30,6 +30,10 @@ links:
     url: /assets/files/not-gate-obj.zip
   - label: "Editable source: the baseplate (OBJ)"
     url: /assets/files/not-gate-baseplate-obj.zip
+# The hero is a portrait close-up, which crops badly to a share card and only exists at
+# 480px wide. The line-up is 2528x1256 — near enough the 1.91:1 platforms want — and it
+# is the more persuasive image anyway.
+ogImage: not-gate-lineup.jpg
 hero:
   src: not-gate-final.jpg
   alt: The final 3D-printed NOT gate, shaped like the logic gate symbol, with copper tape in moulded channels, two resistors, a transistor and a green LED in place.
