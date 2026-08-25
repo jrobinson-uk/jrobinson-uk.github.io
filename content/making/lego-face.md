@@ -70,6 +70,22 @@ matrices while the mouth travels between expressions.
 
 ![The robot face animating: the LED matrix eyes change pattern while the tube mouth moves between a smile and a frown.](assets/img/robot_face.gif)
 
+### Controllers, as a second line of enquiry
+
+The face was one question the Build HAT raised; the other was input. If LEGO can express
+something, can it also be the thing you hold?
+
+So I built a set of small controller prototypes out of LEGO to see which mechanisms make
+usable game inputs: a button controller, a rotary controller, and a colour-sensing device
+meant for the kind of puzzle where you present the right thing to the right place rather
+than press a key. ==None of them are products. They exist to find out which movements
+survive being handled by somebody who is playing rather than being careful.==
+
+I gave them to my daughter and let her handle them without instructions, which is the only
+way to find out whether a control makes sense in a hand rather than on paper. A
+breakout-style game was built on the same platform by someone else — I did not work on
+that one, but it is the sort of thing the inputs were for.
+
 ## What I did myself
 
 First prototype through to final design: the mechanism, the program, the 3D model, the

@@ -28,8 +28,14 @@ any of the making worked?
 An MSc in STEM Education, in progress since 2025, examining how policy, practice and ideas
 about play, making and creativity meet in the classroom.
 
-A dissertation on the affective, embodied and symbolic knowledge learners bring to bear
-when debugging physical computing projects.
+The dissertation is where this is heading rather than something I have done. I am starting
+it now, on the embodied, symbolic and affective cognition a learner brings to a physical
+computing project that has stopped working.
+
+What precedes it is smaller and real: a test of a resource I had built myself, run with
+six learners at a Code Club and written up in [[solderless-not-gate|the NOT gate entry]].
+Two things came out of it that I did not expect, and both are in that entry rather than
+claimed here.
 
 ## Where I stand
 

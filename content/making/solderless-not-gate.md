@@ -105,7 +105,16 @@ burnt out the transistor. Replacing it took them five to ten minutes.
 ## What I learned
 
 The honest doubt first: I am not certain I didn't swap one challenge for another. The
-soldering iron posed problems, and so does copper tape.
+soldering iron posed problems, and so does copper tape. Removing the iron removed a
+supervision problem and a safety problem; what it left behind was **manual dexterity**,
+and that turned out to be the barrier that survived every change I made to the design.
+
+The second finding surprised me more, because the build was not the hard part. The
+learners assembled the gate without much trouble. What was missing was a reason, and
+putting it into the flood defence model is what supplied it — once they could see the
+logic doing something, the point of having built it landed. ==A gate on a table is a
+component. The same gate wired to a flood warning is an argument, and the learners needed
+the second one before the first one meant anything.==
 
 ==The failures were all about contact, not logic.== The first prototype blew its transistor
 because I applied too much current, and the fix was as much protective as it was
