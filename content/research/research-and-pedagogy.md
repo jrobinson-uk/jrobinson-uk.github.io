@@ -12,6 +12,9 @@ tags:
   - debugging
   - making
 tools: []
+hero:
+  src: making-and-creating-logbook-cover.jpg
+  alt: "The cover of a logbook titled Making and creating: a corkboard collage of polaroid-style photographs of the projects inside — a copper tape circuit with a lit green LED, a redstone circuit built in Minecraft, the 3D-printed NOT gate, knotted pipe cleaners, a stitched fabric panel, a plotted graphic labelled Population, pressed leaves on paper, a breadboard under a hand, and a table of laptops mid-session."
 ---
 
 ## The question

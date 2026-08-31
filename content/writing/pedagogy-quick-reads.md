@@ -19,6 +19,9 @@ links:
     url: https://teachcomputing.org/blog?tag=quickread
   - label: "Raspberry Pi Foundation: turning abstract ideas into classroom practice"
     url: https://www.raspberrypi.org/blog/pedagogy-quick-reads-turning-abstract-ideas-into-classroom-practice/
+hero:
+  src: pedagogy-quick-read-spread.png
+  alt: "Two pages of a Pedagogy Quick Read fanned out on a white background, headed Computational Thinking 2.0 under the Raspberry Pi Foundation logo, with a diagram comparing Computational Thinking 1.5 and 2.0 and boxed sections on key concepts, problem solving and correctness."
 ---
 
 ## The question
