@@ -19,7 +19,7 @@ tools:
   - micro:bit radio
   - Lockbox
 hero:
-  src: escape-room-vault.gif
+  src: escape-room-vault.jpg
   alt: A cardboard "vault", secured with a microbit and servo.
 ---
 
@@ -35,6 +35,8 @@ Could a group of people each build their own puzzle in a single session, and hav
 One of several activities, in a session on the maker module of my MSc. Each group built theirs independently.
 
 The shared project is what makes the activity an escape room. Solving a puzzle gives you information, a number, a code sequence, which you then enter into that puzzle's micro:bit. The micro:bit checks it and, if it is right, transmits an unlock code over radio to a central micro:bit. The central one is counting: when it has heard from every puzzle, it releases a lockbox.
+
+![[escape-room-key.jpg]]
 
 That structure is the interesting part, and it is not really about micro:bits. Each group only had to agree on the code they would send and when. Everything else, what the puzzle is, how you solve it, how hard it is, belonged to whoever built it. 
 
