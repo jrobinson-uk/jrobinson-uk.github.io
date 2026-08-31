@@ -20,13 +20,12 @@ tools:
   - Lockbox
 hero:
   src: escape-room-vault.jpg
-  alt: A cardboard "vault" — a Raspberry Pi Monitor carton pressed into service — secured with a micro:bit and a servo mounted on the lid, the micro:bit's LED matrix lit and the servo wired beside it as the lock.
+  alt: A cardboard "vault", a Raspberry Pi Monitor carton pressed into service, secured with a micro:bit and a servo mounted on the lid, the micro:bit's LED matrix lit and the servo wired beside it as the lock.
 ---
 
 ## The question
 
-An escape room is a set of puzzles that has to behave as one system. Each puzzle can be
-authored by a different person, but the room only works if they agree on what a solved puzzle means and what happens next.
+An escape room is a set of puzzles that has to behave as one system. Each puzzle can be authored by a different person, but the room only works if they agree on what a solved puzzle means and what happens next.
 
 Could a group of people each build their own puzzle in a single session, and have the result be one room rather than several unrelated toys?
 
@@ -46,4 +45,4 @@ The lockbox matters too. The last link in the chain is a physical thing opening,
 
 By the people who built it, in the session, we switched around and tried each other's puzzles.
 
-It was developed with and tested on educators rather than learners, and that is a limit here. Educators are a good audience for whether the mechanism holds together and a poor one for whether the puzzles are the right difficulty, because they are reading the design at the same time as playing it. It has not been in front of children.
+It was developed with and tested on educators rather than learners, and that is a limit here. Educators are a good audience for whether the mechanism holds together and a poor one for whether the puzzles are the right difficulty, because they are reading the design at the same time as playing it. It has not been in front of children. 

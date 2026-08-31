@@ -26,27 +26,13 @@ ogImage: lego-inputs-lineup.jpg
 
 ## The question
 
-This was groundwork for another project — the one that became a game of Pong you play
-with LEGO. The brief was to control a piece of software with LEGO hardware, and before
-you can write that project you have to answer a narrower question:
-
-Which hand-built LEGO mechanism actually makes a good game input? Not which ones are
-possible — the Build HAT will read most of them — but which ones feel right in a hand and
-are worth building a game around.
+This was groundwork for another project, that became a game of Pong you control with LEGO. The brief was to control a piece of software (game) with LEGO hardware, and in particular, how can LEGO be used to make novel game controllers
 
 ## What I made
 
-Five candidates, built to be played with rather than finished.
+Five candidates, built to showcase possibilites than finished.
 
-A **throttle lever** that pushes back and forward, giving a linear scale rather than an
-on-or-off signal. A **two-button pad**, made from LEGO buttons on biscuits. A **cradle
-with a colour sensor** in it, so that dropping a different coloured brick in triggers a
-different action — the odd one of the set, and the one furthest from a conventional
-controller. The **rotary encoders in the motors**, read directly as a dial. And I think
-there was a **plunger** as well, though I would not swear to it.
-
-==None of them are products. They exist to be handled, because whether a control makes
-sense in a hand is not a thing you can settle on paper.==
+A **throttle lever** that pushes back and forward, giving a linear scale rather than an on-or-off signal. A **two-button pad**, made from LEGO buttons and "biscuit" elements. A **cradle with a colour sensor** in it, so that dropping a different coloured brick in triggers a different action, and a dial built from the LEGO **rotary encoders in the motors**.
 
 ![Six LEGO game inputs on a wooden desk. A magenta frame carrying two rotating hubs. A teal motor with a black spoked wheel on its hub. A black frame holding a colour sensor, with green, yellow, blue and red bricks laid out beside it. A teal motor labelled FLIPPER, driving a black toothed rack with a white lever on the end. A motor turning a grey gear against a long toothed rack. And a motor with a magenta lever arm ending in a white spiral-patterned roller.](assets/img/lego-inputs-lineup.jpg)
 
@@ -58,18 +44,12 @@ sense in a hand is not a thing you can settle on paper.==
 
 ## What I did myself
 
-The prototyping. The brief and the eventual project were a team effort; going away and
-coming back with five mechanisms to argue over was the part that was mine.
+The prototyping. The brief and the eventual project were a team effort; going away and coming back with five mechanisms to argue over was the part that was mine.
 
-I gave them to my daughter and let her handle them without instructions, which is the
-cheapest useful test there is.
+I gave them to my daughter and let her handle them without instructions, which is the cheapest useful test there is.
 
 ## Where it went
 
-The rotary encoder won, and it is what the published project uses: [LEGO® game
-controller](https://projects.raspberrypi.org/en/projects/lego-game-controller) reads the
-degrees of rotation from two Technic motors and moves the paddles in a game of Pong drawn
-with Python's Turtle library.
+The rotary encoder became the main controller featured in the live [LEGO® game controller](https://projects.raspberrypi.org/en/projects/lego-game-controller) project, it reads the degrees of rotation from two motors and moves the paddles in a game of Pong drawn with Python's Turtle library.
 
-==So four of the five went nowhere, which is the point of building five. The colour cradle
-is the one I would still like to find a use for.==
+

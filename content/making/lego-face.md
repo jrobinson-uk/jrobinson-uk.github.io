@@ -38,16 +38,13 @@ links:
 
 ## The question
 
-Could the Build HAT support a project where physical LEGO responds expressively to the
-real world and could a child build it from instructions?
+Could the Build HAT support a project where physical LEGO responds expressively to the real world and could a child build it from instructions?
 
-There was a second question underneath it: what does machine learning look like when a
-nine-year-old can see it working, on a table, without a cloud account?
+There was a second question underneath it: what does machine learning look like when a nine-year-old can see it working, on a table, without a cloud account?
 
 ## What I made
 
-A minifig like face, built on two LEGO Technic baseplates. The eyes are a pair of off-the-shelf 8×8 LED matrices, cheap and simple to solder and assemble. The mouth is a flexible hose with
-a large LEGO Technic motor at one end, so it can be pulled into a smile or pushed into a frown. Two smaller motors move the eyebrows. A Raspberry Pi Camera Module sits above the face to capture and recognise images of objects placed in it's view.
+A minifig like face, built on two LEGO Technic baseplates. The eyes are a pair of off-the-shelf 8×8 LED matrices, cheap and simple to solder and assemble. The mouth is a flexible hose with a large LEGO Technic motor at one end, so it can be pulled into a smile or pushed into a frown. Two smaller motors move the eyebrows. A Raspberry Pi Camera Module sits above the face to capture and recognise images of objects placed in it's view.
 
 ![The robot face animating: the LED matrix eyes change pattern while the tube mouth moves between a smile and a frown.](assets/img/robot_face.gif)
 
@@ -87,9 +84,8 @@ The machine learning was the part I expected to be fragile, and it was the part 
 
 ## Where it went
 
-Published as **LEGO® robot face** on the Raspberry Pi projects site: twelve steps, from 
-testing the machine learning model through building the face to programming emotional responses to objects. The build is given as guidance and inspiration rather than instruction, learners are encouraged to use whatever LEGO they have.
+Published as **LEGO® robot face** on the Raspberry Pi projects site: twelve steps, from testing the machine learning model through building the face to programming emotional responses to objects. The build is given as guidance and inspiration rather than instruction, learners are encouraged to use whatever LEGO they have.
 
 It has since been translated into German, Spanish, Japanese, Korean and Chinese, and it is still maintained: the repository was last updated in July 2025, five years after the project was written.
 
-The physical model was displayed in the Raspberry Pi flagship store in Cambridge.
+The physical model was displayed in the Raspberry Pi flagship store in Cambridge. 

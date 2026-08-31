@@ -31,7 +31,7 @@ links:
   - label: "Editable source: the baseplate (OBJ)"
     url: /assets/files/not-gate-baseplate-obj.zip
 # The hero is a portrait close-up, which crops badly to a share card and only exists at
-# 480px wide. The line-up is 2528x1256 — near enough the 1.91:1 platforms want — and it
+# 480px wide. The line-up is 2528x1256, near enough the 1.91:1 platforms want, and it
 # is the more persuasive image anyway.
 ogImage: not-gate-lineup.jpg
 hero:
@@ -43,8 +43,7 @@ hero:
 
 An original MSc activity built a NOT gate out of relays and applied it to a flood warning system. It worked, and it needed a soldering iron and a hot glue gun. Any setting without those tools or in which learners may struggle to use them would find this challenging.
 
-Could the same logic, and the same learning, come down to cheaper components and fewer
-specialist tools?
+Could the same logic, and the same learning, come down to cheaper components and fewer specialist tools?
 
 ## What I made
 
@@ -82,13 +81,12 @@ The second finding surprised me more, because the build was not the hard part. T
 
 The failures were all about contact, not logic. The first prototype blew its transistor because I applied too much current, and the fix was as much protective as it was electrical a second resistor on the transistor input. A protective frame for the underside also prevented accidental contact and shorting.
 
-The paper version taught me something too. Being able to trace the pathways with a
-finger made the circuit legible in a way the 3D-printed one wasn't.
+The paper version taught me something too. Being able to trace the pathways with a finger made the circuit legible in a way the 3D-printed one wasn't.
 
 ## Where it went
 
 The print files are here: the [gate](/assets/files/not-gate.stl) at 3mm, and the [baseplate](/assets/files/not-gate-baseplate.stl) it clips into. Both are yours to print.
 
-Both are also up as OBJ — [gate](/assets/files/not-gate-obj.zip), [baseplate](/assets/files/not-gate-baseplate-obj.zip) — which is the format to take if you want to change the model rather than print it. 
+Both are also up as OBJ: [gate](/assets/files/not-gate-obj.zip), [baseplate](/assets/files/not-gate-baseplate-obj.zip), which is the format to take if you want to change the model rather than print it. 
 
-The 3D design is also exported as a flat SVG, printable at the right scale, so the same circuit can be built on paper. That drops the resource requirement again — no printer, no filament, just tape and three components.
+The 3D design is also exported as a flat SVG, printable at the right scale, so the same circuit can be built on paper. That drops the resource requirement again: no printer, no filament, just tape and three components. 

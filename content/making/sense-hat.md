@@ -28,36 +28,24 @@ hero:
 
 ## The question
 
-Shortly after joining the Raspberry Pi Foundation the Sense Hat was released for the Astro Pi mission. A board with eight sensors on it and lots of potential. An accelerometer, a
-gyroscope, a magnetometer, temperature, humidity, pressure, an 8×8 LED display and a
-joystick. We got to work exploring it's practical application in the classroom
+Shortly after joining the Raspberry Pi Foundation the Sense Hat was released for the Astro Pi mission. A board with eight sensors on it and lots of potential. An accelerometer, a gyroscope, a magnetometer, temperature, humidity, pressure, an 8×8 LED display and a joystick. We got to work exploring it's practical application in the classroom
 
-Rather than specify an answer, could we generate candidateprojects cheaply enough to see
-which ones held up?
+Rather than specify an answer, could we generate candidateprojects cheaply enough to see which ones held up?
 
 An early test, which never quite made it into a project was **the polystyrene drop.** I wrapped a Sense HAT in a polystyrene shell, threw it out of the office window, and derived the height of the building from the acceleration under gravity.
 
 ## What I made
 
-**Puzzle box.** A program that hides something behind a series of locks, each opened by
-a different sensor rather than a password. A temperature lock that waits until the board
-is warmed or cooled to a target. A humidity lock. A combination lock that converts the
-board's orientation into an angle, so you dial it by physically turning the thing. And a
-location lock, it takes an optional USB GPS reciever and stays shut until you carry it to the right place.
+**Puzzle box.** A program that hides something behind a series of locks, each opened by a different sensor rather than a password. A temperature lock that waits until the board is warmed or cooled to a target. A humidity lock. A combination lock that converts the board's orientation into an angle, so you dial it by physically turning the thing. And a location lock, it takes an optional USB GPS reciever and stays shut until you carry it to the right place.
 
 Puzzle boxes are centuries old and people still make them for the pleasure of it. That context provided a counterpoint to classic data science projects, the sensors become the mechanism of a game. It led to a nineteen step project, and it ends by asking the learner to invent locks of their own.
 
 ## What I learned
 
-The cheapest way to find out what a new capability is for is to make several small things
-with it and see which ones people want to copy. A specification written first would have
-taken longer and been less convincing.
+The cheapest way to find out what a new capability is for is to make several small things with it and see which ones people want to copy. A specification written first would have taken longer and been less convincing.
 
-The locks also taught me something about divergent thinking. A temperature sensor is a component typically used for tracking and logging data, rethinking of it a conditional barrier, a
-lock, led to this project.
+The locks also taught me something about divergent thinking. A temperature sensor is a component typically used for tracking and logging data, rethinking of it a conditional barrier, a lock, led to this project.
 
 ## Where it went
 
-The puzzle box was published on the Raspberry Pi site and is still there, with the source
-still being maintained, the repository was last updated in November 2024, nine years
-after it was written.
+The puzzle box was published on the Raspberry Pi site and is still there, with the source still being maintained, the repository was last updated in November 2024, nine years after it was written. 

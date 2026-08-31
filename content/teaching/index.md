@@ -3,4 +3,4 @@ title: Teaching
 description: Programmes and professional development for educators.
 ---
 
-Programmes where educators built things themselves.
+Programmes where educators built things themselves. 
