@@ -59,10 +59,15 @@ export function PreviewImage({
 
   // Never display an image larger than it actually is. A small source shown big is
   // just blurry, and it hides the fact that a better photograph is needed.
+  //
+  // The cap goes on the <img>, not the <picture>. On the <picture> it shrank the whole
+  // square box, so one low-resolution source made its card smaller than its neighbours
+  // and knocked the captions out of line across the grid. On the <img> the box stays a
+  // uniform square and a small source simply sits smaller inside it.
   const cap = entry.width ? { maxWidth: `${entry.width}px` } : undefined
 
   return (
-    <picture style={cap}>
+    <picture>
       {entry.anim && (
         <source
           media="(prefers-reduced-motion: reduce)"
@@ -81,6 +86,7 @@ export function PreviewImage({
         <source type="image/webp" srcset={srcsetOf(entry.still.webp)} sizes={sizes} />
       )}
       <img
+        style={cap}
         src={fallback}
         srcset={srcsetOf(jpeg)}
         sizes={sizes}
@@ -160,17 +166,26 @@ export const tileStyles = `
    and follows the light and dark themes without being told about either. Done in CSS on
    purpose: the source files and the derivatives are untouched, and squaring is a
    presentation decision that stays reversible by editing this rule. */
+/* A square box with the image centred inside it, scaled down to fit and never up.
+   The image is taken out of flow on purpose: aspect-ratio only expresses a preference,
+   so an in-flow image taller than the square simply grew the box past it — a 637x935
+   print made its card 687px tall next to a 446px neighbour. Absolutely positioned with
+   auto margins it cannot affect the box at all, and max-width/max-height cap it at the
+   square while the inline per-image cap still holds it to its intrinsic size. */
 .tile-media picture {
+  position: relative;
   display: block;
+  width: 100%;
   aspect-ratio: 1;
 }
 .tile-media img {
-  display: block;
-  width: 100%;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: auto;
+  height: auto;
   max-width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
+  max-height: 100%;
 }
 
 .placeholder {

@@ -110,19 +110,28 @@ ProjectHero.css = `
 }
 /* Squared to match the tiles, so an entry's hero has the same shape wherever it appears.
    See the note in ProjectTile for why this is CSS rather than a new derivative. */
-.project-hero-media picture,
-.project-hero-media video {
+/* Same centred-fit box as the tiles — see the note in ProjectTile for why the image is
+   positioned out of flow rather than laid out inside the square. */
+.project-hero-media picture {
+  position: relative;
   display: block;
+  width: 100%;
   aspect-ratio: 1;
 }
-.project-hero-media img,
+.project-hero-media img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
 .project-hero-media video {
   display: block;
   width: 100%;
   max-width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
+  height: auto;
 }
 .project-hero-credit {
   margin: 0.5rem 0 0;
