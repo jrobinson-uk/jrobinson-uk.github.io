@@ -24,8 +24,11 @@ tools:
   - TensorFlow Lite
   - LDraw
   - Python
+# Not robot_face.gif: it is only 323px, and since animations became MP4 the tile cannot
+# animate anyway — so it rendered a small still that made this card narrower than its
+# neighbours and pushed its caption out of line with them. The clip is in the body.
 hero:
-  src: robot_face.gif
+  src: lego-face-hero.jpg
   alt: The completed robot face, with 8×8 LED matrix eyes and a flexible grey hose curved into a smile.
 links:
   - label: LEGO® robot face on the Raspberry Pi projects site
