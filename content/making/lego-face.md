@@ -53,7 +53,7 @@ a large LEGO Technic motor at one end, so it can be pulled into a smile or pushe
 
 Getting to the finished product took a number of prototypes and iterations, especially as the Build-Hat product and APIs were undergoing parallel development
 
-![An early prototype of the face standing on a desk, with LED matrix eyes, a pink 3D-printed camera bracket on top and a flexible tube mouth.](assets/img/lego-face-early.jpg) ![The back of the model, showing the Raspberry Pi mounted on a blue LEGO base with white ribbon cables running up to the camera, and two legs holding the whole thing upright.](assets/img/lego-face-back.jpg)
+![An early prototype: two 8×8 LED matrices showing round lit eyes behind a cream Technic panel, with a flexible grey tube curved below them as a mouth. No camera yet.](assets/img/lego-face-prototype-cream.jpg) ![An early prototype of the face standing on a desk, with LED matrix eyes, a pink 3D-printed camera bracket on top and a flexible tube mouth.](assets/img/lego-face-early.jpg) ![The back of the model, showing the Raspberry Pi mounted on a blue LEGO base with white ribbon cables running up to the camera, and two legs holding the whole thing upright.](assets/img/lego-face-back.jpg)
 
 The recognition runs on the Pi itself, a pre-trained TensorFlow Lite model and a labels file, no network call and no account. The camera classifies whatever is held up to it, and the program maps the label it gets back to an expression.
 

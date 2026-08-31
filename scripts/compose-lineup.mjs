@@ -28,7 +28,8 @@ const FIT = process.env.FIT ?? "cover"
 // The NOT gate, in the order the entry describes: a diagram on a sticky note, bare wires
 // on the carpet, copper tape on paper, the print whose transistor blew, the template that
 // replaced it, that template refined, and the finished gate.
-const LINEUP = {
+const LINEUPS = [
+{
   out: "not-gate-lineup.jpg",
   columns: 4,
   panel: 620,
@@ -43,7 +44,25 @@ const LINEUP = {
     "not-gate-04-final-print.jpg",
     "not-gate-final.jpg",
   ],
-}
+},
+// The LEGO game inputs. One per mechanism family rather than every photograph, so the
+// range is the point: two dials, a colour reader, a flipper, a rack and pinion.
+{
+  out: "lego-inputs-lineup.jpg",
+  columns: 3,
+  panel: 620,
+  gap: 16,
+  labelled: false,
+  frames: [
+    "lego-inputs-rotary-pair.jpg",
+    "lego-inputs-dial.jpg",
+    "lego-inputs-colour-reader.jpg",
+    "lego-inputs-flipper.jpg",
+    "lego-inputs-rack-and-pinion.jpg",
+    "lego-inputs-spinner.jpg",
+  ],
+},
+]
 
 /** A numeral rendered as SVG, so no font files or canvas dependency are needed. */
 function numeral(n, size) {
@@ -104,4 +123,4 @@ async function compose(spec) {
   )
 }
 
-await compose(LINEUP)
+for (const spec of LINEUPS) await compose(spec)
