@@ -34,7 +34,7 @@ const ProjectLinks: QuartzComponent = ({ fileData }: QuartzComponentProps) => {
 
 ProjectLinks.css = `
 .project-links {
-  max-width: 34rem;
+  max-width: var(--measure);
   margin-top: 2.625rem;
 }
 .project-links h2 {

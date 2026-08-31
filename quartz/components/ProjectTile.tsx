@@ -151,8 +151,27 @@ export const tileStyles = `
 }
 .tile-link:hover .tile-title { text-decoration: underline; }
 .tile-summary { display: block; color: var(--darkgray); }
-.tile-media picture { display: block; }
-.tile-media img { display: block; width: 100%; max-width: 100%; height: auto; }
+/* Hero images are squared off rather than shown at their own aspect ratio. The sources
+   are a mix of portrait and landscape, which made the grid ragged — a 637x935 print next
+   to a 4608x3456 photograph left one card twice the height of its neighbour. A contain fit
+   letterboxes the whole image inside a square, so nothing is cropped or stretched.
+
+   The padding is left transparent rather than filled, so it takes the page background
+   and follows the light and dark themes without being told about either. Done in CSS on
+   purpose: the source files and the derivatives are untouched, and squaring is a
+   presentation decision that stays reversible by editing this rule. */
+.tile-media picture {
+  display: block;
+  aspect-ratio: 1;
+}
+.tile-media img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
 
 .placeholder {
   display: flex;

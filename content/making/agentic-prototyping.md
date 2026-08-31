@@ -22,6 +22,9 @@ links:
     url: https://github.com/jrobinson-uk/Literature-Search
   - label: CEFR vocabulary analyser (GitHub)
     url: https://github.com/jrobinson-uk/CEFR_script
+hero:
+  src: agentic-literature-search.png
+  alt: "The literature search tool running as a sidebar in Google Sheets: a results sheet of published papers on the left, and a panel headed Citation Crawl on the right setting out the pipeline's stages."
 ---
 
 ## The question
@@ -44,8 +47,6 @@ Two of them are shareable here:
 ### A **literature search tool** 
 
 Runs inside Google Sheets. Give it terms and it searches, then chases citations outward,  snowball sampling, assembling what it finds into a spreadsheet you can actually work in. The Apps Script behind it was agent-written under my direction 
-
-![The literature search tool running as a sidebar in Google Sheets. On the left, a results sheet with columns for Depth, Crawled, Year, Title, Authors and Type, filled with published papers on generative AI in computing education. On the right, a panel headed Citation Crawl sets out the pipeline — a venue sweep, then a keyword pass, then backward and forward citation passes, then a final sweep to retry missing abstracts — each stage writing to its own sheet. Below that, two hand-picked seed papers and a field for pasting a resume code.](assets/img/agentic-literature-search.png)
 
 ### CEFR vocabulary analyser
 

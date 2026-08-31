@@ -74,7 +74,7 @@ const ProjectHero: QuartzComponent = ({ fileData }: QuartzComponentProps) => {
       )}
       {hero.src && (
         <div class="project-hero-media">
-          <PreviewImage hero={hero} sizes="(min-width: 60rem) 58rem, 100vw" eager />
+          <PreviewImage hero={hero} sizes="(min-width: 48rem) 46rem, 100vw" eager />
           {hero.credit && (
             <p class="project-hero-credit">
               {hero.creditUrl ? <a href={hero.creditUrl}>{hero.credit}</a> : hero.credit}
@@ -88,7 +88,7 @@ const ProjectHero: QuartzComponent = ({ fileData }: QuartzComponentProps) => {
 
 ProjectHero.css = `
 .project-summary {
-  max-width: 34rem;
+  max-width: var(--measure);
   color: var(--darkgray);
   font-size: 1.1875rem;
 }
@@ -96,7 +96,7 @@ ProjectHero.css = `
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.2rem 1rem;
-  max-width: 34rem;
+  max-width: var(--measure);
   margin: 0;
   font-size: 0.9375rem;
 }
@@ -105,10 +105,25 @@ ProjectHero.css = `
 
 .project-hero-media {
   margin: 1.5rem 0 2.625rem;
-  max-width: 58rem;
+  /* Shares the reading column, so the hero's edges line up with the prose below it. */
+  max-width: var(--measure);
 }
-.project-hero-media picture { display: block; }
-.project-hero-media img { display: block; width: 100%; max-width: 100%; height: auto; }
+/* Squared to match the tiles, so an entry's hero has the same shape wherever it appears.
+   See the note in ProjectTile for why this is CSS rather than a new derivative. */
+.project-hero-media picture,
+.project-hero-media video {
+  display: block;
+  aspect-ratio: 1;
+}
+.project-hero-media img,
+.project-hero-media video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
 .project-hero-credit {
   margin: 0.5rem 0 0;
   color: var(--gray);

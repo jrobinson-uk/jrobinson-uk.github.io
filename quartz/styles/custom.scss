@@ -9,8 +9,15 @@
  */
 
 :root {
-  --measure: 34rem; // body text, roughly 65–72 characters
-  --wide: 58rem; // page frame; images may fill it
+  // One column for everything you read: prose, images, video, hero. Text used to be
+  // held at 34rem while images filled 58rem, which left a narrow ribbon of prose
+  // beside images nearly twice its width — the page read as broken rather than as
+  // image-led. Aligning them costs a slightly long line (about 85 characters) and buys
+  // a single clean edge down the page.
+  --measure: 46rem;
+  // The page frame. Wider than the reading column, and used by the tile grids on the
+  // landing and archive pages, where more columns is the point.
+  --wide: 58rem;
 }
 
 // ---- frame ----
@@ -40,17 +47,17 @@
 }
 
 body {
-  font-size: 1.0625rem;
+  font-size: 1.1875rem;
   line-height: 1.65;
 }
 
 // ---- typography ----
 
-// The article is as wide as the page frame, but text inside it is held to a readable
-// measure. That way an image or an iteration line-up can break wider than the prose,
-// which is what the site plan asks for, without any negative-margin trickery.
+// The article is one column. Images no longer break wider than the prose: they line up
+// with it, so the left and right edges are continuous from the first paragraph to the
+// last photograph.
 article {
-  max-width: var(--wide);
+  max-width: var(--measure);
 
   & > p,
   & > ul,
@@ -89,11 +96,11 @@ article {
   //
   // Matches `picture` as well as `img`, because the ResponsiveImages transformer wraps
   // every body image it recognises.
-  // A paragraph that is nothing but an image breaks wider than the prose. Diagrams and
-  // instruction sheets carry detail that a 34rem column throws away.
+  // A paragraph that is nothing but an image fills the reading column edge to edge,
+  // rather than inheriting the per-image intrinsic cap and sitting ragged inside it.
   & > p:has(> picture:only-child),
   & > p:has(> img:only-child) {
-    max-width: var(--wide);
+    max-width: var(--measure);
 
     & picture,
     & img {
@@ -108,8 +115,7 @@ article {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
-    // Overrides the readable measure applied to paragraphs above.
-    max-width: var(--wide);
+    max-width: var(--measure);
 
     & picture,
     & img {

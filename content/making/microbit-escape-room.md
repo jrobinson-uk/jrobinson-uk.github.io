@@ -20,7 +20,7 @@ tools:
   - Lockbox
 hero:
   src: escape-room-vault.jpg
-  alt: A cardboard "vault", secured with a microbit and servo.
+  alt: A cardboard "vault" — a Raspberry Pi Monitor carton pressed into service — secured with a micro:bit and a servo mounted on the lid, the micro:bit's LED matrix lit and the servo wired beside it as the lock.
 ---
 
 ## The question
@@ -36,14 +36,14 @@ One of several activities, in a session on the maker module of my MSc. Each grou
 
 The shared project is what makes the activity an escape room. Solving a puzzle gives you information, a number, a code sequence, which you then enter into that puzzle's micro:bit. The micro:bit checks it and, if it is right, transmits an unlock code over radio to a central micro:bit. The central one is counting: when it has heard from every puzzle, it releases a lockbox.
 
-![[escape-room-key.jpg]]
+![A hand holding a micro:bit with a battery pack trailing from it on a red wire, its LED matrix lit. On the table behind, the cardboard vault with its own micro:bit and a small blue servo mounted on the lid.](assets/img/escape-room-key.jpg)
 
-That structure is the interesting part, and it is not really about micro:bits. Each group only had to agree on the code they would send and when. Everything else, what the puzzle is, how you solve it, how hard it is, belonged to whoever built it. 
+That structure is the interesting part, and it is not really about micro:bits. Each group only had to agree on the code they would send and when. Everything else, what the puzzle is, how you solve it, how hard it is, belonged to whoever built it.
 
 The lockbox matters too. The last link in the chain is a physical thing opening, not a message on a screen, so the payoff is a physical output and real "unlocking".
 
 ## How it was tested
 
-By the people who built it, in the session, we switched around and tried each others puzzles
+By the people who built it, in the session, we switched around and tried each other's puzzles.
 
 It was developed with and tested on educators rather than learners, and that is a limit here. Educators are a good audience for whether the mechanism holds together and a poor one for whether the puzzles are the right difficulty, because they are reading the design at the same time as playing it. It has not been in front of children.

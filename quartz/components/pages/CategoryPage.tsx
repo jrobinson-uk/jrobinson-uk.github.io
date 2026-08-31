@@ -37,7 +37,7 @@ const CategoryPage: QuartzComponent = ({ fileData, tree, allFiles }: QuartzCompo
 CategoryPage.css = `
 ${tileStyles}
 
-.category-intro { max-width: 34rem; margin-bottom: 2.25rem; }
+.category-intro { max-width: var(--measure); margin-bottom: 2.25rem; }
 .category-empty { color: var(--gray); }
 `
 
