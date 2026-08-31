@@ -12,6 +12,11 @@ tags:
   - computing-education
   - pedagogy
   - presenting
+hero:
+  src: hello-world-podcast-artwork.jpg
+  alt: The Hello World podcast cover art — the words "(Hello World)" in heavy black type inside a bright yellow circle on a black square.
+  credit: "Cover art: Hello World, Raspberry Pi Foundation"
+  creditUrl: https://helloworld.buzzsprout.com/1746662/episodes
 links:
   - label: Listen to the Hello World podcast
     url: https://helloworld.buzzsprout.com/1746662/episodes
