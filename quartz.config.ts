@@ -8,7 +8,7 @@ import * as Component from "./quartz/components"
 /**
  * Quartz 4 configuration for jamesrobinson's portfolio.
  *
- * Deliberately stripped back: no analytics, no search index, no graph, no
+ * Deliberately stripped back: no search index, no graph, no
  * popovers, no downloaded fonts. The design direction is that the artefact
  * photographs are the only visual interest, so the site's own furniture stays
  * close to invisible.
@@ -20,7 +20,10 @@ const config: QuartzConfig = {
     // No client-side routing: it buys nothing on a nine-page site and costs JS.
     enableSPA: false,
     enablePopovers: false,
-    analytics: null,
+    // GoatCounter: cookieless, aggregate only, no cross-site tracking, so no consent
+    // banner. Quartz injects a deferred script from gc.zgo.at and counts again on
+    // in-page navigation, which matters because this site does client-side routing.
+    analytics: { provider: "goatcounter", websiteId: "legojames" },
     locale: "en-GB",
     baseUrl: "jrobinson-uk.github.io",
     ignorePatterns: ["private", "templates", ".obsidian"],
